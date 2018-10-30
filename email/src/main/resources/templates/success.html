@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>发送成功页面</title>
+    <script src="/js/jquery.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css" />
+    <script src="/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="mycenter">
+    <div class="mysign">
+        <div class="col-lg-11 text-center text-info">
+            <h2>您的邮件已发送</h2>
+        </div>
+        <div class="col-lg-10">
+            <button type="submit" class="btn btn-success col-lg-12">返回邮箱首页</button>
+            <button type="button" class="btn btn-success col-lg-12">再写一封</button>
+        </div>
+        <div class="col-lg-11 text-center text-info">
+            <h4 >邮件已发送给以下联系人：</h4>
+            <p th:text="${to}" ></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

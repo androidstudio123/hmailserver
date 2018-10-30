@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>邮件发送</title>
+    <script src="/js/jquery.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/mail.css" />
+    <script src="/js/bootstrap.min.js"></script>
+</head>
+<div class="mycenter">
+    <div class="mysign">
+        <div class="col-lg-11 text-center text-info">
+            <h2>邮件发送</h2>
+        </div>
+<form action="sendMail" method="post">
+    <div class="col-lg-10">
+        <input type="text"class="form-control" name="to" placeholder="输入收件人账号" required autofocus/>
+    </div>
+    <div class="col-lg-10">
+        <input type="text"class="form-control" name="subject" placeholder="输入发送主题" required autofocus/>
+    </div>
+    <div class="col-lg-10">
+        <input type="text"class="form-control" name="content" placeholder="输入发送内容" required autofocus/>
+    </div>
+    <div class="col-lg-10">
+        <button type="submit" class="btn btn-success col-lg-12">提交</button>
+    </div>
+</form>
+    </div>
+</div>
+</html>

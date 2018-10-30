@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>用户登录</title>
+    <script src="/js/jquery.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css" />
+    <script src="/js/bootstrap.min.js"></script>
+    <!--<script src="/templates/tpl/login.js"></script>-->
+</head>
+<form action="login" method="post" che>
+    <div class="mycenter">
+        <div class="mysign">
+            <div class="col-lg-11 text-center text-info">
+                <h2>请登录</h2>
+            </div>
+            <div class="col-lg-10">
+                <input type="text"class="form-control" data-bind="input:username" name="username" placeholder="请输入账户名"   required autofocus />
+                <p th:text="${err1}" ></p>
+            </div>
+            <div class="col-lg-10"></div>
+            <div class="col-lg-10">
+                <input type="password" class="form-control" name="password" placeholder="请输入密码" required autofocus/>
+                <label th:text="${err}" ></label>
+            </div>
+            <div class="col-lg-10"></div>
+            <div class="col-lg-10 mycheckbox checkbox">
+                <input type="checkbox" class="col-lg-1">记住密码</input>
+            </div>
+            <div class="col-lg-10"></div>
+            <div class="col-lg-10">
+                <button type="submit" class="btn btn-success col-lg-12" onclick="aaa">登录</button>
+            </div>
+            <div class="col-lg-10">
+                <button type="submit"  class="btn btn-success col-lg-12" ><a href="register">注册</a></button>
+            </div>
+        </div>
+    </div>
+</form>
+</html>
