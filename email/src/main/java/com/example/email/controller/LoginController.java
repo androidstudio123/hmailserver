@@ -44,7 +44,7 @@ public class LoginController {
 
 
     @RequestMapping("register")
-    //注册aaaaaa
+    //注册aaaaaaaa
     public String register(){
         return "register";
     }
