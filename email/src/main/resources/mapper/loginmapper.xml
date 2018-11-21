@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.email.dao.Logindao">
+
+    <!-- 查询所有的课程信息 -->
+    <select id="findAll" resultType="com.example.email.bean.login">
+        select * from login
+    </select>
+
+    <!-- 根据id删除课程信息 -->
+    <!--<delete id="deleteById" parameterType="long">-->
+        <!--delete from poll_answers where id = #{id}-->
+    <!--</delete>-->
+
+    <!-- 保存课程信息 -->
+    <insert id="save" parameterType="com.example.email.bean.login">
+        insert into login values (#{username},#{password})
+    </insert>
+
+    <!--<update id="update" parameterType="com.briup.apps.poll.bean.Answers" >-->
+        <!--update poll_answers set selections=#{selections},checks=#{checks},survey_id=#{survey_id} where id = #{id}-->
+    <!--</update>-->
+</mapper>
+
