@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.email.dao.Logindao">
+<mapper namespace="com.example.email.dao.LoginDao">
 
     <!-- 查询所有的课程信息 -->
     <select id="findAll" resultType="com.example.email.bean.login">
