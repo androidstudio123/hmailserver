@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.email.dao.CommodityDao">
+    <select id="findAll" resultType="com.example.email.bean.commodity">
+        select * from commodity
+    </select>
+    <select id="findBycategory_id" resultType="com.example.email.bean.commodity">
+        select * from commodity where category_id=#{category_id}
+    </select>
+</mapper>

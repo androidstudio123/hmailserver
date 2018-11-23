@@ -18,7 +18,7 @@
 
 .nav-info{
 	height: 40px;
-	background-color: #4b4d52;
+	background-color: #b9bbbe;
 	display: flex;
 	justify-content: flex-end;
 	flex-wrap: wrap;
@@ -191,7 +191,7 @@ table {
 
 .book-guide{
     width: 200px;
-    height: 295px;
+    height: 400px;
     border: 1px solid #ccc;
     display: flex;
     flex-direction: column;
