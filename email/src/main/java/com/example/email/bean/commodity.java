@@ -7,6 +7,7 @@ public class commodity {
     private String type;
     private String price;
     private  int category_id;
+    private  String quailty;
 
     public int getId() {
         return id;
@@ -54,5 +55,13 @@ public class commodity {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public String getQuailty() {
+        return quailty;
+    }
+
+    public void setQuailty(String quailty) {
+        this.quailty = quailty;
     }
 }

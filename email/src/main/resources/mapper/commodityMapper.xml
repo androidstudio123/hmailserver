@@ -9,4 +9,14 @@
     <select id="findBycategory_id" resultType="com.example.email.bean.commodity">
         select * from commodity where category_id=#{category_id}
     </select>
+    <select id="findBycategory_Id" resultType="com.example.email.bean.commodity">
+        select * from commodity where category_id=#{category_id}
+    </select>
+    <select id="findByquailty" resultType="com.example.email.bean.commodity">
+        select * from commodity where quailty=#{quailty}
+    </select>
+    <select id="Searchcommodity" resultType="com.example.email.bean.commodity">
+        select * from commodity where descrip LIKE #{Search}
+    </select>
+
 </mapper>

@@ -166,16 +166,16 @@
 <body>
         <nav class="navbar">
             <div class="nav-info" style="color: blue">
-                <a href="#" class="username"><label th:text="${username}" ></label></a>
+                <a href="#" class="username"><label th:text="${session.username}" ></label></a>
                 <a href="/myTransanction" class="bookshelf">||&nbsp;&nbsp;&nbsp;我的交易</a>
                 <a href="/logout" class="logout">[ 退 出 ]</a>
             </div> <!-- nav-info -->
 
-            <form action="searchcommodity" method="post">
+            <form action="Searchcommodity" method="get">
                 <div class="nav-search">
                     <a href="/home"><img class="logo" src="/img/logo2.png"></a>
                     <div class="search-form">
-                        <input id="search-input" name="name" type="search" class="searchIn" placeholder="搜商品...">
+                        <input id="search-input" name="Search" class="searchIn" placeholder="搜商品...">
                         <a href="#" class="search-logo">| &nbsp;<img src="/img/search.png"></a>
                         <button type="submit" id="search-button" class="searchBtn">搜索</button>
                     </div>
@@ -185,7 +185,7 @@
 
             <ul class="menu">
                 <li><a class="active" href="home">首页</a></li>
-                <li><a href="/gocomm">商品良品</a></li>
+                <li><a th:href="@{/goodcomm(quailty=${'good'})}">商品良品</a></li>
                 <li><a href="/goAskcomm">求购区</a></li>
                 <li><a href="#">服务区</a></li>
             </ul>
@@ -236,14 +236,15 @@ th:href="@{'字符串'+${model中的nam值}}"。-->
 
                     <h3 class="book-title"><a href="#">| <label th:text="${category.value}" ></label></a></h3>
                     <!--<a class="more" href="goBookStore?id=${category.key}">     > > 更多</a>-->
-                  <a  class="more" th:href="@{/findBycategory_id(category_id=${category.key})}">    > > 更多 </a>
+                  <a  class="more" th:href="@{/gocomm(category_id=${category.key})}">    > > 更多 </a>
 
 
-                    <ul class="book-lists">
+                    <ul class="book-lists" >
                         <!--使用list进行循环，然后判断list.get(category_id)是否和category.key相等，相等则输出-->
-                        <ul th:each="comm:${commodities}" var="book" varStatus="bookStatus">
-                        <div th:if="${comm.getCategory_id()} eq ${category.key}">
-                            <li class="book-list">
+                        <ul th:each="comm,commstat:${commodities}"  >
+                        <div th:if="${comm.getCategory_id()} eq ${category.key} ">
+                            <div th:if="${commstat.count} lt ${7}">
+                            <li class="book-list" >
                                 <a th:href="@{/findcommodityiamgeBycommodity_id(commodity_id=${comm.getId()})}" class="book-pic" target="_blank">
                                     <img th:src="@{'/img/comm/'+${comm.getId()}+'.jpg'}"/>
                                     <!--<img src="/img/a.jpg">-->
@@ -257,6 +258,7 @@ th:href="@{'字符串'+${model中的nam值}}"。-->
                         </span>
                             </a>
                             </li>
+                            </div>
                         </div>
                         </ul>
                     </ul><!--  book-list end -->

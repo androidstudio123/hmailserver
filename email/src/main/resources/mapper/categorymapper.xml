@@ -8,4 +8,7 @@
     <select id="findAll" resultType="com.example.email.bean.category">
         select * from category
     </select>
+    <select id="findvalueByid" resultType="com.example.email.bean.category">
+        select * from category where id=#{category_id}
+    </select>
 </mapper>

@@ -12,11 +12,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 @Component
-public class CommodityServiceImpl  implements CommodityService{
+public class CommodityServiceImpl  implements CommodityService {
     @Autowired
     CommodityDao commodityDao;
     @Autowired
     CategoryDao categoryDao;
+
     @Override
     public List<commodity> findAll() {
         return commodityDao.findAll();
@@ -27,8 +28,27 @@ public class CommodityServiceImpl  implements CommodityService{
         List<commodity> numbers = commodityDao.findBycategory_id(category_id);
         Map<String, String> numbersMap = new HashMap<>();
         for (commodity number : numbers) {
-           numbersMap.put(number.getName(),number.getDescrip());
+            numbersMap.put(number.getName(), number.getDescrip());
         }
         return numbers;
     }
+
+    @Override
+    public List<commodity> findBycategory_Id(int category_id) {
+        List<commodity> list = commodityDao.findBycategory_Id(category_id);
+        return list;
+    }
+
+    @Override
+    public List<commodity> findByquailty(String quailty) {
+        List<commodity> list = commodityDao.findByquailty(quailty);
+        return list;
+    }
+
+    @Override
+    public List<commodity> Searchcommodity(String Search) {
+        List<commodity> list=commodityDao.Searchcommodity(Search);
+        return list;
+    }
+
 }

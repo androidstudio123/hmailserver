@@ -1,7 +1,12 @@
 package com.example.email.controller;
 
+import com.example.email.bean.category;
 import com.example.email.bean.commodity;
+import com.example.email.service.Categoryservice;
 import com.example.email.service.CommodityService;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,13 +19,34 @@ import java.util.List;
 public class CommodityController {
     @Autowired
     private CommodityService commodityService;
-    @GetMapping("findBycategory_id")
-    public String findBycategory_id(@RequestParam int category_id, Model m){
-      //  Map<String,String> numbers= (Map<String, String>) commodityService.findBycategory_id(category_id);
+    @Autowired
+    private Categoryservice categoryservice;
+
+    @GetMapping("/gocomm")
+    public String findBycategory_id(Model m, @RequestParam int category_id,@RequestParam(value = "start",defaultValue = "0") int start,@RequestParam(value = "size",defaultValue="8") int size) throws Exception {
         List<commodity> list = new ArrayList<>();
         list=commodityService.findBycategory_id(category_id);
         m.addAttribute("list",list);
-       // m.addAttribute("numbers",numbers);
+        List<category> value = categoryservice.findvalueByid(category_id);
+        category value1= value.get(0);
+        m.addAttribute("categoryvalue",value1);
+
+         PageHelper.startPage(start,size,"id desc");
+        List all=commodityService.findBycategory_Id(category_id);
+       PageInfo<commodity> page=new PageInfo<>(all);
+        m.addAttribute("page", page);
         return "commodity";
     }
+@RequestMapping("goodcomm")
+    public String findQuality(Model m,@RequestParam(defaultValue ="good") String quailty,@RequestParam(value = "start",defaultValue = "0") int start,@RequestParam(value = "size",defaultValue="8") int size){
+    PageHelper.startPage(start,size,"id desc");
+    List<commodity> qq = new ArrayList<>();
+    qq=commodityService.findByquailty(quailty);
+    PageInfo<commodity> page=new PageInfo<>(qq);
+    m.addAttribute("page", page);
+    m.addAttribute("categoryvalue","商品良品");
+        return "goodcommodity";
+}
+
+
 }

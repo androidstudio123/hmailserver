@@ -28,4 +28,10 @@ public class CategoryServiceImpl implements Categoryservice {
         }
         return categoriesMap;
     }
+
+    @Override
+    public List<category> findvalueByid(int category_id) {
+        List<category> value = categoryDao.findvalueByid(category_id);
+        return value;
+    }
 }
