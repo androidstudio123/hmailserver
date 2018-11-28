@@ -44,6 +44,7 @@ public class LoginController {
             m.addAttribute("categories", categories);
             m.addAttribute("commodities", list1);
             m.addAttribute("session", session);
+            m.addAttribute("user",log);
             return "home";
 //            }else{
 //                m.addAttribute("username",username);

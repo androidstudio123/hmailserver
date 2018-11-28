@@ -60,4 +60,14 @@ public class CommodityController {
         return "commodityimage";
     }
 
+    @RequestMapping("myTransanction")
+    public String findcommodityBylogin_id(Model m,@RequestParam int login_id ,@RequestParam(value = "start",defaultValue = "0") int start,@RequestParam(value = "size",defaultValue="6") int size){
+        PageHelper.startPage(start,size,"id desc");
+      List<commodity> shelf=commodityService.findcommodityBylogin_id(login_id);
+        PageInfo<commodity> page=new PageInfo<>(shelf);
+        m.addAttribute("page", page);
+        m.addAttribute("shelf",shelf);
+        return "mycommodityshelf";
+    }
+
 }

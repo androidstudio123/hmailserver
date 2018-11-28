@@ -8,6 +8,8 @@ public class commodity {
     private String price;
     private  int category_id;
     private  String quailty;
+    private  int login_id;
+    private  String originalPrice;
 
     public int getId() {
         return id;
@@ -63,5 +65,21 @@ public class commodity {
 
     public void setQuailty(String quailty) {
         this.quailty = quailty;
+    }
+
+    public int getLogin_id() {
+        return login_id;
+    }
+
+    public void setLogin_id(int login_id) {
+        this.login_id = login_id;
+    }
+
+    public String getOriginalPrice() {
+        return originalPrice;
+    }
+
+    public void setOriginalPrice(String originalPrice) {
+        this.originalPrice = originalPrice;
     }
 }
