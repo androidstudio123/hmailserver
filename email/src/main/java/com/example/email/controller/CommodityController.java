@@ -1,8 +1,10 @@
 package com.example.email.controller;
 
 import com.example.email.bean.category;
+import com.example.email.bean.commimage;
 import com.example.email.bean.commodity;
 import com.example.email.service.Categoryservice;
+import com.example.email.service.CommimageService;
 import com.example.email.service.CommodityService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
@@ -21,6 +23,8 @@ public class CommodityController {
     private CommodityService commodityService;
     @Autowired
     private Categoryservice categoryservice;
+    @Autowired
+    private CommimageService commimageService;
 
     @GetMapping("/gocomm")
     public String findBycategory_id(Model m, @RequestParam int category_id,@RequestParam(value = "start",defaultValue = "0") int start,@RequestParam(value = "size",defaultValue="8") int size) throws Exception {
@@ -48,5 +52,12 @@ public class CommodityController {
         return "goodcommodity";
 }
 
+@RequestMapping("findcommodityiamgeBycommodity_id")
+    public String findcommodityiamgeBycommodity_id(Model m,@RequestParam int commodity_id){
+        List<commimage> image=commimageService.findBycommodityid(commodity_id);
+          commimage image1=image.get(0);
+        m.addAttribute("image",image1);
+        return "commodityimage";
+    }
 
 }

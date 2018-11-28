@@ -14,11 +14,11 @@
         <a href="/logout" class="logout">[ 退 出 ]</a>
     </div> <!-- nav-info -->
 
-    <form action="searchcommodity" method="post">
+    <form action="Searchcommodity" method="get">
         <div class="nav-search">
-            <a href="/home"><img class="logo" src="/img/logo2.png"></a>
+            <a href="#"><img class="logo" src="/img/logo2.png"></a>
             <div class="search-form">
-                <input id="search-input" name="name" type="search" class="searchIn" placeholder="搜商品...">
+                <input id="search-input" name="name" type="search" class="searchIn" placeholder="搜商品..." required autofocus>
                 <a href="#" class="search-logo">| &nbsp;<img src="/img/search.png"></a>
                 <button type="submit" id="search-button" class="searchBtn">搜索</button>
             </div>
@@ -50,8 +50,9 @@
         <ul class="book-lists">
             <th th:each="comm1:${page.list}">
                 <li class="book-list">
-                    <a href="bookDetail.do?id=${book.getId()}" class="book-pic" target="_blank">
-                        <img src="<%=request.getContextPath()%>/img/book-list/article/${book.getBookImage().getId()}.jpg">
+                    <a th:href="@{/findcommodityiamgeBycommodity_id(commodity_id=${comm1.getId()})}" class="book-pic" target="_blank">
+                        <img th:src="@{'/img/comm/'+${comm1.getId()}+'.jpg'}"/>
+                        <!--<img src="/img/a.jpg">-->
                     </a>
                     <a href="#" class="book-info">
                         <h5 class="book-name"><label th:text="${comm1.getName()}"></label></h5>

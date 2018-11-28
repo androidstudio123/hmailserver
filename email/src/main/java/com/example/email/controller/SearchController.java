@@ -20,7 +20,7 @@ public class SearchController {
     @GetMapping("Searchcommodity")
     public String Searchcommodity(Model m, @RequestParam String Search,@RequestParam(value = "start",defaultValue = "0") int start,@RequestParam(value = "size",defaultValue="8") int size){
         PageHelper.startPage(start,size,"id desc");
-        List<commodity> list=commodityService.Searchcommodity(Search);
+        List<commodity> list=commodityService.Searchcommodity('%'+Search+'%');
         PageInfo<commodity> page=new PageInfo<>(list);
         m.addAttribute("page", page);
         m.addAttribute("jieguo","搜索结果");

@@ -16,7 +16,7 @@
 
     <!-- 保存课程信息 -->
     <insert id="save" parameterType="com.example.email.bean.login">
-        insert into login values (#{username},#{password})
+        insert into login values (null,#{username},#{password})
     </insert>
 
     <!--<update id="update" parameterType="com.briup.apps.poll.bean.Answers" >-->

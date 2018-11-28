@@ -165,6 +165,7 @@
 </head>
 <body>
         <nav class="navbar">
+            <!--nav表示导航链接的标签-->
             <div class="nav-info" style="color: blue">
                 <a href="#" class="username"><label th:text="${session.username}" ></label></a>
                 <a href="/myTransanction" class="bookshelf">||&nbsp;&nbsp;&nbsp;我的交易</a>
@@ -173,9 +174,9 @@
 
             <form action="Searchcommodity" method="get">
                 <div class="nav-search">
-                    <a href="/home"><img class="logo" src="/img/logo2.png"></a>
+                    <a href="#"><img class="logo" src="/img/logo2.png"></a>
                     <div class="search-form">
-                        <input id="search-input" name="Search" class="searchIn" placeholder="搜商品...">
+                        <input id="search-input" name="Search" class="searchIn" placeholder="搜商品..." required autofocus>
                         <a href="#" class="search-logo">| &nbsp;<img src="/img/search.png"></a>
                         <button type="submit" id="search-button" class="searchBtn">搜索</button>
                     </div>
