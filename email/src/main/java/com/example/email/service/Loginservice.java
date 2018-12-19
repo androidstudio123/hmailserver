@@ -8,5 +8,4 @@ public interface Loginservice {
     void save(login list) ;
     List<login> findAll();
 
-
 }

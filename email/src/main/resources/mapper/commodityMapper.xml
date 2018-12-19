@@ -21,4 +21,7 @@
     <select id="findcommodityBylogin_id" resultType="com.example.email.bean.commodity">
         select * from commodity where login_id=#{login_id}
     </select>
+    <select id="findlogin_idBycommodity_id" resultType="com.example.email.bean.commodity">
+        select * from commodity where id=#{id}
+    </select>
 </mapper>

@@ -11,7 +11,7 @@
 <nav class="navbar">
     <div class="nav-menu">
         <ul class="menu">
-            <li><a th:href="@{/loginin}" class="active">首页</a></li>
+            <li><a th:href="@{/loginin}">首页</a></li>
             <li><a th:href="@{/goodcomm(quailty=${'good'})}">商品良品</a></li>
             <li><a href="/goAskcomm">求购区</a></li>
             <li><a href="#">服务区</a></li>
@@ -27,7 +27,7 @@
 
     <div class="nav-info">
         <a href="#" class="username"><label th:text="${session.username}" ></label></a>
-        <a th:href="@{/myTransanction(login_id=${shelf.get(0).getLogin_id()})}" class="bookshelf">||&nbsp;&nbsp;&nbsp;我的商品架</a>
+        <a th:href="@{/myTransanction(login_id=${loginid})}" class="bookshelf">||&nbsp;&nbsp;&nbsp;我的商品架</a>
         <a href="logout.do" class="logout">[ 退 出 ]</a>
     </div> <!-- nav-info-end -->
 </nav>

@@ -43,7 +43,7 @@ public class LoginController {
             m.addAttribute("username", username);
             m.addAttribute("categories", categories);
             m.addAttribute("commodities", list1);
-            m.addAttribute("session", session);
+            //m.addAttribute("session", session);
             m.addAttribute("user",log);
             return "home";
 //            }else{
@@ -56,6 +56,8 @@ public class LoginController {
 //             return "login";
 //         }
         }
+        request.getSession().setAttribute("log", log);
+        String session1 = (String) request.getSession().getAttribute(String.valueOf(log));
     }
 
         m.addAttribute("err", "用户名或密码错误！");
@@ -66,8 +68,14 @@ public class LoginController {
         Map<Integer, String> categories = Categoryservice.listByMap();
         List<commodity> list1 = new ArrayList<>();
         list1 = commodityService.findAll();
-        m.addAttribute("categories", categories);
-        m.addAttribute("commodities", list1);
+        List<login> list = new ArrayList<>();
+        list = loginservice.findAll();
+        for (login log : list) {
+            m.addAttribute("categories", categories);
+            m.addAttribute("commodities", list1);
+                m.addAttribute("user", log);
+            }
+
         return "home";
     }
 
