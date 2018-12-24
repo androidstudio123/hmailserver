@@ -10,6 +10,8 @@ public class commodity {
     private  String quailty;
     private  int login_id;
     private  String originalPrice;
+private  String filename;
+
 
     public int getId() {
         return id;
@@ -81,5 +83,13 @@ public class commodity {
 
     public void setOriginalPrice(String originalPrice) {
         this.originalPrice = originalPrice;
+    }
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
     }
 }

@@ -3,7 +3,6 @@ package com.example.email.service;
 import com.example.email.bean.commodity;
 
 import java.util.List;
-import java.util.Map;
 
 public interface CommodityService {
     List<commodity> findAll();
@@ -13,4 +12,5 @@ public interface CommodityService {
     List<commodity> Searchcommodity(String Search);
     List<commodity> findcommodityBylogin_id(int login_id);
     List<commodity> findlogin_idBycommodity_id(int id);
+    commodity save(commodity commodity);
 }

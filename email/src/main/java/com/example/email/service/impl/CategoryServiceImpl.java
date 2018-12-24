@@ -34,4 +34,12 @@ public class CategoryServiceImpl implements Categoryservice {
         List<category> value = categoryDao.findvalueByid(category_id);
         return value;
     }
+
+    @Override
+    public category findidByname(String name) {
+        category list=categoryDao.findidByname(name);
+        return list;
+    }
+
+
 }

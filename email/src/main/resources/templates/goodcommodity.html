@@ -9,8 +9,8 @@
 <body>
 <nav class="navbar">
     <div class="nav-info" style="color: blue">
-        <a href="#" class="username"><label th:text="${session.username}" ></label></a>
-        <a href="/myTransanction" class="bookshelf">||&nbsp;&nbsp;&nbsp;我的交易</a>
+        <a href="#" class="username"><label th:text="${session.username.getUsername()}" ></label></a>
+        <a th:href="@{/myTransanction(login_id=${session.username.getId()})}" class="bookshelf">||&nbsp;&nbsp;&nbsp;我的交易</a>
         <a href="/logout" class="logout">[ 退 出 ]</a>
     </div> <!-- nav-info -->
 
@@ -18,7 +18,7 @@
         <div class="nav-search">
             <a href="#"><img class="logo" src="/img/logo2.png"></a>
             <div class="search-form">
-                <input id="search-input" name="name" type="search" class="searchIn" placeholder="搜商品..." required autofocus>
+                <input id="search-input" name="Search" class="searchIn" placeholder="搜商品..." required autofocus>
                 <a href="#" class="search-logo">| &nbsp;<img src="/img/search.png"></a>
                 <button type="submit" id="search-button" class="searchBtn">搜索</button>
             </div>

@@ -1,6 +1,5 @@
 package com.example.email.service.impl;
 
-import com.example.email.bean.category;
 import com.example.email.bean.commodity;
 import com.example.email.dao.CategoryDao;
 import com.example.email.dao.CommodityDao;
@@ -61,6 +60,12 @@ public class CommodityServiceImpl  implements CommodityService {
     public List<commodity> findlogin_idBycommodity_id(int id) {
         List<commodity> list=commodityDao.findlogin_idBycommodity_id(id);
         return list;
+    }
+
+    @Override
+    public commodity save(commodity commodity) {
+        commodityDao.save(commodity);
+        return commodity;
     }
 
 }

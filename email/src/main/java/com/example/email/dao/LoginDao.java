@@ -7,4 +7,5 @@ public interface LoginDao {
     //gggg
     List<login> findAll();
      void save(login list);
+     List<login> findidByusername(String username);
 }

@@ -11,4 +11,7 @@
     <select id="findvalueByid" resultType="com.example.email.bean.category">
         select * from category where id=#{category_id}
     </select>
+    <select id="findidByname" resultType="com.example.email.bean.category">
+        select * from category where name=#{name}
+    </select>
 </mapper>

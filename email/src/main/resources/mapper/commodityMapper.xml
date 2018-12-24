@@ -24,4 +24,7 @@
     <select id="findlogin_idBycommodity_id" resultType="com.example.email.bean.commodity">
         select * from commodity where id=#{id}
     </select>
+    <insert id="save" parameterType="com.example.email.bean.commodity">
+        insert into commodity values(null,#{name},#{descrip},#{type},#{category_id},#{price},#{quailty},#{login_id},#{originalPrice},#{filename})
+    </insert>
 </mapper>

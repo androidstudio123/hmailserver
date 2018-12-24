@@ -1,5 +1,6 @@
 package com.example.email.controller;
 
+import com.example.email.bean.category;
 import com.example.email.bean.commodity;
 import com.example.email.bean.login;
 import com.example.email.service.CommodityService;
@@ -24,28 +25,33 @@ public class LoginController {
     private Categoryservice Categoryservice;
     @Autowired
     private CommodityService commodityService;
+
     @RequestMapping("main")
-    public String login(){
+    public String login() {
         return "login";
     }
-@RequestMapping("login")
+
+    @RequestMapping("login")
 //@ResponseBody
-    public String Login(Model m, @RequestParam("username") String username, @RequestParam("password") String password,HttpServletRequest request) {
-    request.getSession().setAttribute("username", username);
-    String session = (String) request.getSession().getAttribute(username);
-    List<login> list = new ArrayList<>();
-    list = loginservice.findAll();
-    Map<Integer, String> categories = Categoryservice.listByMap();
-    List<commodity> list1 = new ArrayList<>();
-    list1 = commodityService.findAll();
-    for (login log : list) {
-        if (username.equals(log.getUsername()) && password.equals(log.getPassword())) {
-            m.addAttribute("username", username);
-            m.addAttribute("categories", categories);
-            m.addAttribute("commodities", list1);
-            //m.addAttribute("session", session);
-            m.addAttribute("user",log);
-            return "home";
+    public String Login(Model m, login login, HttpServletRequest request) {
+//        request.getSession().setAttribute("username", login);
+//        String session = (String) request.getSession().getAttribute(String.valueOf(login));
+        List<login> list = new ArrayList<>();
+        list = loginservice.findAll();
+
+        Map<Integer, String> categories = Categoryservice.listByMap();
+        List<commodity> list1 = new ArrayList<>();
+        list1 = commodityService.findAll();
+        for (login log : list) {
+            if (login.getUsername().equals(log.getUsername()) && login.getPassword().equals(log.getPassword())) {
+                m.addAttribute("username", login.getUsername());
+                m.addAttribute("categories", categories);
+                m.addAttribute("commodities", list1);
+                //m.addAttribute("session", session);
+                m.addAttribute("user", log);
+                request.getSession().setAttribute("username", log);
+                String session = (String) request.getSession().getAttribute(String.valueOf(log));
+                return "home";
 //            }else{
 //                m.addAttribute("username",username);
 //              m.addAttribute("err","密码错误！");
@@ -55,61 +61,59 @@ public class LoginController {
 //              m.addAttribute("err1","用户名不存在！");
 //             return "login";
 //         }
-        }
-        request.getSession().setAttribute("log", log);
-        String session1 = (String) request.getSession().getAttribute(String.valueOf(log));
-    }
+            }
 
+        }
         m.addAttribute("err", "用户名或密码错误！");
         return "login";
     }
+
     @RequestMapping("loginin")
-    public String loginin(Model m){
+    public String loginin(Model m) {
         Map<Integer, String> categories = Categoryservice.listByMap();
         List<commodity> list1 = new ArrayList<>();
         list1 = commodityService.findAll();
         List<login> list = new ArrayList<>();
         list = loginservice.findAll();
+
         for (login log : list) {
             m.addAttribute("categories", categories);
             m.addAttribute("commodities", list1);
-                m.addAttribute("user", log);
-            }
-
+            m.addAttribute("user", log);
+        }
         return "home";
     }
 
 
     @RequestMapping("register")
-     //@ResponseBody
+    //@ResponseBody
     public String register(Model m, login list) {
         //login log = JSON
-        List<login> list1=new ArrayList<>();
-         list1 =  loginservice.findAll();
+        List<login> list1 = new ArrayList<>();
+        list1 = loginservice.findAll();
 
-            if (list.getUsername() == ""|| list.getPassword() == "") {
-                m.addAttribute("err1", "用户名或密码不能为空！");
-                return "register";
-            } else  {
-                for(login login : list1){
-                    if((list.getUsername()).equals(login.getUsername())){
-                        m.addAttribute("err2","用户名已存在！");
-                        return "register";
-                    }
+        if (list.getUsername() == "" || list.getPassword() == "") {
+            m.addAttribute("err1", "用户名或密码不能为空！");
+            return "register";
+        } else {
+            for (login login : list1) {
+                if ((list.getUsername()).equals(login.getUsername())) {
+                    m.addAttribute("err2", "用户名已存在！");
+                    return "register";
                 }
-                loginservice.save(list);
-                return "login";
-
             }
+            loginservice.save(list);
+            return "login";
 
         }
 
-
+    }
 
     @RequestMapping("Register")
- public String Register(){
-     return "register";
-  }
+    public String Register() {
+        return "register";
+    }
+
     @RequestMapping("/logout")
     public String logout(HttpServletRequest request) {
         request.getSession().removeAttribute("username");

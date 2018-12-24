@@ -9,7 +9,7 @@
 <body>
 <nav class="navbar">
     <div class="nav-info" style="color: blue">
-        <a href="#" class="username"><label th:text="${session.username}" ></label></a>
+        <a href="#" class="username"><label th:text="${session.username.getUsername()}" ></label></a>
         <a href="/myTransanction" class="bookshelf">||&nbsp;&nbsp;&nbsp;我的交易</a>
         <a href="/logout" class="logout">[ 退 出 ]</a>
     </div> <!-- nav-info -->
@@ -51,7 +51,7 @@
             <th th:each="comm1:${page.list}">
                 <li class="book-list">
                     <a th:href="@{/findcommodityiamgeBycommodity_id(commodity_id=${comm1.getId()})}" class="book-pic" target="_blank">
-                        <img th:src="@{'/img/comm/'+${comm1.getId()}+'.jpg'}"/>
+                        <img th:src="@{'/img/comm/'+${comm1.getFilename()}}"/>
                         <!--<img src="/img/a.jpg">-->
                     </a>
                     <a href="#" class="book-info">

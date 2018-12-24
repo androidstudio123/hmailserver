@@ -167,8 +167,8 @@
         <nav class="navbar">
             <!--nav表示导航链接的标签-->
             <div class="nav-info" style="color: blue">
-                <a href="#" class="username"><label th:text="${session.username}" ></label></a>
-                <a th:href="@{/myTransanction(login_id=${user.getId()})}" class="bookshelf">||&nbsp;&nbsp;&nbsp;我的交易</a>
+                <a href="#" class="username"><label th:text="${session.username.getUsername()}" ></label></a>
+                <a th:href="@{/myTransanction(login_id=${session.username.getId()})}" class="bookshelf">||&nbsp;&nbsp;&nbsp;我的交易</a>
                 <a href="/logout" class="logout">[ 退 出 ]</a>
             </div> <!-- nav-info -->
 
@@ -185,7 +185,7 @@
 
 
             <ul class="menu">
-                <li><a class="active" href="home">首页</a></li>
+                <li><a class="active" href="#">首页</a></li>
                 <li><a th:href="@{/goodcomm(quailty=${'good'})}">商品良品</a></li>
                 <li><a href="/goAskcomm">求购区</a></li>
                 <li><a href="#">服务区</a></li>
@@ -247,7 +247,7 @@ th:href="@{'字符串'+${model中的nam值}}"。-->
                             <div th:if="${commstat.count} lt ${7}">
                             <li class="book-list" >
                                 <a th:href="@{/findcommodityiamgeBycommodity_id(commodity_id=${comm.getId()})}" class="book-pic" target="_blank">
-                                    <img th:src="@{'/img/comm/'+${comm.getId()}+'.jpg'}"/>
+                                    <img th:src="@{'/img/comm/'+${comm.getFilename()}}"/>
                                     <!--<img src="/img/a.jpg">-->
                                 </a>
                                 <a href="#" class="book-info">

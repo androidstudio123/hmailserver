@@ -3,28 +3,44 @@ package com.example.email.controller;
 import com.example.email.bean.category;
 import com.example.email.bean.commimage;
 import com.example.email.bean.commodity;
+import com.example.email.bean.login;
 import com.example.email.service.Categoryservice;
 import com.example.email.service.CommimageService;
 import com.example.email.service.CommodityService;
+import com.example.email.service.Loginservice;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class CommodityController {
+
+    private static String UPLOADED_FOLDER = "D://hMailserver//hmailserver//hmailserver//email//src//main//resources//static//img//comm//";
     @Autowired
     private CommodityService commodityService;
     @Autowired
     private Categoryservice categoryservice;
     @Autowired
     private CommimageService commimageService;
+    @Autowired
+    private Loginservice loginservice;
 
     @GetMapping("/gocomm")
     public String findBycategory_id(Model m, @RequestParam int category_id,@RequestParam(value = "start",defaultValue = "0") int start,@RequestParam(value = "size",defaultValue="8") int size) throws Exception {
@@ -70,8 +86,50 @@ public class CommodityController {
         PageInfo<commodity> page=new PageInfo<>(shelf);
         m.addAttribute("page", page);
         m.addAttribute("shelf",shelf);
-        m.addAttribute("loginid",login_id);
+        m.addAttribute("login",login_id);
         return "mycommodityshelf";
     }
+    @RequestMapping("upload")
+    public String upload(Model m){
+       List<category> categoryList=categoryservice.findAll();
+       m.addAttribute("categoryLists",categoryList);
+        return "uploadsell";
+    }
+    @RequestMapping("savecomm")
+    public String savecomm(Model m ,commodity commodity,@RequestParam("file") MultipartFile file,RedirectAttributes redirectAttributes){
+        commodity.setFilename(file.getOriginalFilename());//将文件的原名字赋值给filename字段
+        commodity.setCategory_id(categoryservice.findidByname(commodity.getType()).getId());
+           commodityService.save(commodity);
+        Map<Integer, String> categories = categoryservice.listByMap();
+        List<commodity> list1 = new ArrayList<>();
+        list1 = commodityService.findAll();
+        List<login> list = new ArrayList<>();
+        list = loginservice.findAll();
 
+        for (login log : list) {
+            m.addAttribute("categories", categories);
+            m.addAttribute("commodities", list1);
+            m.addAttribute("user", log);
+        }
+
+        if (file.isEmpty()) {
+            redirectAttributes.addFlashAttribute("message", "Please select a file to upload");
+            return "uploadStatus";
+        }
+
+        try {
+            // Get the file and save it somewhere
+            byte[] bytes = file.getBytes();
+            Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
+            Files.write(path, bytes);
+
+            redirectAttributes.addFlashAttribute("message",
+                    "You successfully uploaded '" + file.getOriginalFilename() + "'");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        m.addAttribute("img",file.getOriginalFilename());
+        return "home";
+    }
 }

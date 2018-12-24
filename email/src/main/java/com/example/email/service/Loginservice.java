@@ -7,5 +7,5 @@ import java.util.List;
 public interface Loginservice {
     void save(login list) ;
     List<login> findAll();
-
+    List<login> findidByusername(String username);
 }

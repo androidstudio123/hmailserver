@@ -8,8 +8,8 @@
     <select id="findAll" resultType="com.example.email.bean.login">
         select * from login
     </select>
-    <select id="findByUsername" resultType="com.example.email.bean.login">
-        select * from login where username=#{username}
+    <select id="findidByusername" resultType="com.example.email.bean.login">
+        select id from login where username=#{username}
     </select>
     <!-- 根据id删除课程信息 -->
     <!--<delete id="deleteById" parameterType="long">-->

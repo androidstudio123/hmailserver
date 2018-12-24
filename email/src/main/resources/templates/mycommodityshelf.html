@@ -26,8 +26,8 @@
     </div>
 
     <div class="nav-info">
-        <a href="#" class="username"><label th:text="${session.username}" ></label></a>
-        <a th:href="@{/myTransanction(login_id=${loginid})}" class="bookshelf">||&nbsp;&nbsp;&nbsp;我的商品架</a>
+        <a href="#" class="username"><label th:text="${session.username.getUsername()}" ></label></a>
+        <a th:href="@{/myTransanction(login_id=${session.username.getId()})}" class="bookshelf">||&nbsp;&nbsp;&nbsp;我的商品架</a>
         <a href="logout.do" class="logout">[ 退 出 ]</a>
     </div> <!-- nav-info-end -->
 </nav>
@@ -36,7 +36,7 @@
 
 <div class="person-info">
     <p>
-        <a href="#" class="name"><label th:text="${session.username}"></label></a>
+        <a href="#" class="name"><label th:text="${session.username.getUsername()}"></label></a>
     </p>
     <input type="hidden" id="sexInput" value="${user.getSex()}">
     <p>
@@ -64,16 +64,17 @@
 
 <!-- 书摊和求书选项卡 -->
 <div class="card-btn">
-    <span title="sell-book" id="sell-btn" class="active">我的书摊</span>
-    <span title="ask-book" id="ask-btn">我的求书</span>
+    <span title="sell-book" id="sell-btn" class="active">我的商品摊</span>
+    <span title="ask-book" id="ask-btn">我的求购</span>
     <p class="upload-icon"></p>
-    <a id="sell-upload" href="goUpload.do?bookType=1">上传书至书摊</a>
-    <a id="ask-upload" href="goUpload.do?bookType=0">上传求书信息</a>
-    <a id="delete-book" href="#">删除二手书</a>
+    <a id="sell-upload" th:href="@{/upload}">上传商品至商品摊</a>
+    <a id="ask-upload" href="goUpload.do?bookType=0">上传求购信息</a>
+    <a id="delete-book" href="#">删除二商品</a>
 </div>
 
 <!-- 我的书摊 -->
 <div id="container">
+
     <div id="sell-book">
         <ul class="book-ul">
             <th th:each="shelfs:${page.list}">
@@ -99,33 +100,33 @@
     </div> <!-- sell-book-end -->
 
     <span class="page-btn" style="text-align: center">
-        <a th:href="@{/myTransanction(login_id=${shelf.get(0).getLogin_id()},start=0)}">[首  页]</a>
-        <a th:href="@{/myTransanction(login_id=${shelf.get(0).getLogin_id()},start=${page.pageNum -1})}">[上一页]</a>
-        <a th:href="@{/myTransanction(login_id=${shelf.get(0).getLogin_id()},start=${page.pageNum+1})}">[下一页]</a>
-        <a th:href="@{/myTransanction(login_id=${shelf.get(0).getLogin_id()},start=${page.pages})}">[末  页]</a>
+        <a th:href="@{/myTransanction(login_id=${session.username.getId()},start=0)}">[首  页]</a>
+        <a th:href="@{/myTransanction(login_id=${session.username.getId()},start=${page.pageNum -1})}">[上一页]</a>
+        <a th:href="@{/myTransanction(login_id=${session.username.getId()},start=${page.pageNum+1})}">[下一页]</a>
+        <a th:href="@{/myTransanction(login_id=${session.username.getId()},start=${page.pages})}">[末  页]</a>
     </span>
 
 
 
     <!-- 我的求书 -->
-    <div id="ask-book">
-        <ul class="book-ul">
-            <th th:each="" items="${askBooks}" var="askBook" varStatus="askBookStatus">
-                <li class="book-list">
-                    <p class="book-pic">
-                        <img src="img/book-list/article/${askBook.getBookImage().getId()}.jpg">
-                    </p>
-                    <h5 class="book-name"></h5>
-                    <a href="/books/renewal/${askBook.getId()}" class="edit-btn"></a>
-                    <div class="book-detail">
-                        <p>作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;者：<span class="book-author"></span></p>
-                        <p>出&nbsp; 版&nbsp;社：<span class="book-press"></span></p>
-                    </div>
-                </li>
-            </th>
-        </ul>
-    </div><!-- ask-book-end-->
-</div> <!-- container-end -->
+    <!--<div id="ask-book">-->
+        <!--<ul class="book-ul">-->
+            <!--<th th:each="">-->
+                <!--<li class="book-list">-->
+                    <!--<p class="book-pic">-->
+                        <!--<img th:src="@{'/img/comm/'+${session.username.getId()}+'.jpg'}">-->
+                    <!--</p>-->
+                    <!--<h5 class="book-name"></h5>-->
+                    <!--<a href="#" class="edit-btn"></a>-->
+                    <!--<div class="book-detail">-->
+                        <!--<p>作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;者：<span class="book-author"></span></p>-->
+                        <!--<p>出&nbsp; 版&nbsp;社：<span class="book-press"></span></p>-->
+                    <!--</div>-->
+                <!--</li>-->
+            <!--</th>-->
+        <!--</ul>-->
+    <!--</div>&lt;!&ndash; ask-book-end&ndash;&gt;-->
+<!--</div> &lt;!&ndash; container-end &ndash;&gt;-->
 
 
 <footer>
