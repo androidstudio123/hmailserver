@@ -118,7 +118,7 @@ public class CommodityController {
         }
 
         try {
-            // Get the file and save it somewhere
+            // Get the file and save it somewherecc
             byte[] bytes = file.getBytes();
             Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
             Files.write(path, bytes);
