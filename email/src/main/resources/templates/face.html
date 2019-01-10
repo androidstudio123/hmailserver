@@ -17,7 +17,7 @@
                 content: text
             });
         }
-        //这段代 主要是获取摄像头的视频流并显示在Video 签中
+        //这段代码主要是获取摄像头的视频流并显示在Video 签中
         window.addEventListener("DOMContentLoaded", function () {
             var canvas = document.getElementById("canvas"),
                 videoObj = { "video": true },
@@ -91,11 +91,34 @@
     </style>
 
 </head>
-<body style="background-image: url('')" >
-<h1 align="center" id="title">人脸登录</h1>
-<!-- 左边区域 -->
-<div class="div-a" id="contentHolder" align="center">
-    <canvas style="" hidden="hidden"  id="canvas" width="520" height="250"></canvas>
+<!--<body style="background-image: url('')" >-->
+<!--<h1 align="center" id="title">人脸登录</h1>-->
+<!--&lt;!&ndash; 左边区域 &ndash;&gt;-->
+<!--<div class="div-a" id="contentHolder" align="center">-->
+    <!--<canvas style="" hidden="hidden"  id="canvas" width="520" height="250"></canvas>-->
+<!--</div>-->
+<!--</body>-->
+
+
+<input type="text" name="username" placeholder="请输入账户名">
+
+<div id="container">
+    <video id="video" width="400" height="200" autoplay>
+        您的浏览器不支持video标签
+    </video>
+    <canvas id="canvas" width="300" height="200"></canvas>
 </div>
-</body>
+
+
+<button id="head">登录</button>
+<button id="head1">注册</button>
+<div id="tip" style="display: none;">
+</div>
+<input type="hidden" id="result" />
+<div id="msg" style="display: none;">
+</div>
+
+<div id="positions">
+</div>
+
 </html>

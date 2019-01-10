@@ -28,9 +28,13 @@ public class LoginController {
 
     @RequestMapping("main")
     public String login() {
-        return "login";
+        return "face1";
     }
 
+    @RequestMapping("main1")
+    public String login1() {
+        return "home";
+    }
     @RequestMapping("login")
 //@ResponseBody
     public String Login(Model m, login login, HttpServletRequest request) {
