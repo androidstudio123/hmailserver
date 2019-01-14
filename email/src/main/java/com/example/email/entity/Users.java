@@ -1,10 +1,10 @@
 package com.example.email.entity;
 
 public class Users {
-	private Integer id; // ���
-	private String username; // �û���
-	private String password; // ����
-	private String headphoto; // ͷ��
+	private Integer id;
+	private String username;
+	private String password;
+	private String headphoto;
 	public Integer getId() {
 		return id;
 	}

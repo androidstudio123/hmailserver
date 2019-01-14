@@ -55,9 +55,9 @@ public class UserControll {
 	@Autowired
 	private FaceService faceService;
 
-	@RequestMapping("loginface")
+	@RequestMapping("registerface")
 	public String login() {
-		return "loginface";
+		return "face1";
 	}
 
 	/**
@@ -91,9 +91,9 @@ public class UserControll {
 		//String basePath = request.getSession().getServletContext().getRealPath("picture/");
 
 		// 往数据库里面插入注册信息
-		user.setUsername(username);
-		user.setHeadphoto("/picture/" + fileName);
-		faceService.save(user);
+//		user.setUsername(username);
+//		user.setHeadphoto("/picture/" + fileName);
+//		faceService.save(user);
 		// 往服务器里面上传图片
 		GenerateImage(img, UPLOADED_FOLDER + "/" + fileName);
 		// 给人脸库中加入一个脸
@@ -104,8 +104,15 @@ public class UserControll {
 			if (flag == false) {
 				out.print("Please aim at the camera!!");// 请把脸放好咯
 			} else {
-				out.print("Record the success of the image!!"); // 注册成功
-			}
+				    user.setUsername(username);
+					user.setHeadphoto("/picture/" + fileName);
+					faceService.save(user);
+					out.print("Record the success of the image!!"); // 注册成功
+				}
+//						user.setUsername(username);
+//						user.setHeadphoto("/picture/" + fileName);
+//						faceService.save(user);
+//						out.print("Record the success of the image!!"); // 注册成功
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -172,7 +179,7 @@ public class UserControll {
 	        return false;
 	}
 
-	 public boolean search(String img) {
+	 public String search(String img) {
 	        // 请求url
 	        String url = "https://aip.baidubce.com/rest/2.0/face/v3/search";
 	        try {
@@ -190,23 +197,22 @@ public class UserControll {
 
 	            String result = HttpUtil.post(url, accessToken, "application/json", param);
 	            System.out.println(result);
-	            
 	            JSONObject fromObject = JSONObject.fromObject(result);
 	            JSONObject resultscore = fromObject.getJSONObject("result");
 	            JSONArray jsonArray = resultscore.getJSONArray("user_list");
-
 				for (int i = 0; i < jsonArray.size(); i++) {
 					JSONObject object = (JSONObject) jsonArray.get(i);
 					double resultList = object.getDouble("score");
+					String list=object.getString("user_id");
 					System.out.println(resultList);
 					if (resultList >= 90) {
-						return true;
+						return list;
 					}
 				}
 	        } catch (Exception e) {
 	            e.printStackTrace();
 	        }
-	        return false;
+	        return "";
 	    }
 	
 	
@@ -221,16 +227,16 @@ public class UserControll {
 	public @ResponseBody String onListStudent(HttpServletRequest request, HttpServletResponse response, Model model) {
 		String img = request.getParameter("img"); // 图像数据
 		try {
-			boolean tag = search(img);
-			PrintWriter writer = response.getWriter();
-			if (tag) {
-				request.getSession().setAttribute("user", "likang");
-				writer.print(tag);
-				writer.close();
-				return null;
+			String tag = search(img);
+//			PrintWriter writer = response.getWriter();
+			if (tag!=null) {
+				request.getSession().setAttribute("username", tag);
+//				writer.print(tag);
+//				writer.close();
+				return tag;
 			}else {
-				writer.print(tag);
-				writer.close();
+//				writer.print(tag);
+//				writer.close();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

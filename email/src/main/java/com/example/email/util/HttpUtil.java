@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * http ������
+     * http 工具类
  */
 public class HttpUtil {
 
@@ -37,31 +37,31 @@ public class HttpUtil {
     public static String postGeneralUrl(String generalUrl, String contentType, String params, String encoding)
             throws Exception {
         URL url = new URL(generalUrl);
-        // �򿪺�URL֮�������
+
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("POST");
-        // ����ͨ�õ���������
+
         connection.setRequestProperty("Content-Type", contentType);
         connection.setRequestProperty("Connection", "Keep-Alive");
         connection.setUseCaches(false);
         connection.setDoOutput(true);
         connection.setDoInput(true);
 
-        // �õ���������������
+
         DataOutputStream out = new DataOutputStream(connection.getOutputStream());
         out.write(params.getBytes(encoding));
         out.flush();
         out.close();
 
-        // ����ʵ�ʵ�����
+
         connection.connect();
-        // ��ȡ������Ӧͷ�ֶ�
+
         Map<String, List<String>> headers = connection.getHeaderFields();
-        // �������е���Ӧͷ�ֶ�
+
         for (String key : headers.keySet()) {
             System.err.println(key + "--->" + headers.get(key));
         }
-        // ���� BufferedReader����������ȡURL����Ӧ
+
         BufferedReader in = null;
         in = new BufferedReader(
                 new InputStreamReader(connection.getInputStream(), encoding));

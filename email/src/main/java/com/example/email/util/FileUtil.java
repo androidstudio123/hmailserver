@@ -2,14 +2,9 @@ package com.example.email.util;
 
 import java.io.*;
 
-/**
- * �ļ���ȡ������
- */
+
 public class FileUtil {
 
-    /**
-     * ��ȡ�ļ����ݣ���Ϊ�ַ�������
-     */
     public static String readFileAsString(String filePath) throws IOException {
         File file = new File(filePath);
         if (!file.exists()) {
@@ -21,11 +16,11 @@ public class FileUtil {
         } 
 
         StringBuilder sb = new StringBuilder((int) (file.length()));
-        // �����ֽ�������  
+
         FileInputStream fis = new FileInputStream(filePath);  
-        // ����һ������Ϊ10240��Buffer
+
         byte[] bbuf = new byte[10240];  
-        // ���ڱ���ʵ�ʶ�ȡ���ֽ���  
+
         int hasRead = 0;  
         while ( (hasRead = fis.read(bbuf)) > 0 ) {  
             sb.append(new String(bbuf, 0, hasRead));  
@@ -34,9 +29,7 @@ public class FileUtil {
         return sb.toString();
     }
 
-    /**
-     * �����ļ�·����ȡbyte[] ����
-     */
+
     public static byte[] readFileByBytes(String filePath) throws IOException {
         File file = new File(filePath);
         if (!file.exists()) {

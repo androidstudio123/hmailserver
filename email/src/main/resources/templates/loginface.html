@@ -2,9 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <html>
 <head>
-    <base href="<%=basePath%>">
+    <meta charset="utf-8" />
 
-    <title>人脸登录</title>
+    <title>人脸登录界面</title>
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expires" content="0">
@@ -16,7 +16,7 @@
     <style>
         body {
             height: 100%;
-            background: #213838;
+            background: #999999;
             overflow: hidden;
         }
 
@@ -32,8 +32,8 @@
         $(document).ready(function() {
             //粒子背景特效
             $('body').particleground({
-                dotColor: '#5cbdaa',
-                lineColor: '#5cbdaa'
+                dotColor: '#80FFFF',
+                lineColor: '#80FFFF'
             });
             //验证码
             createCode();
@@ -99,7 +99,7 @@
 <form action="face" method="get">
     <dl class="admin_login">
         <dt>
-            <strong>人脸识别登录管理系统</strong><em>开启摄像头，调试角度</em> <strong>请把你的脸放摄像头面前</strong>
+            <strong>人脸识别登录商店系统</strong><em>开启摄像头，调试角度</em> <strong>请把你的脸放摄像头面前</strong>
         </dt>
 
         <div id="media">
@@ -107,7 +107,15 @@
             <canvas id="canvas" width="400" height="300"></canvas>
         </div>
         <dd>
+            <button class="submit_btn" ><a href="/mima">切换登录方式</a></button>
+        </dd>
+        <dd>
             <input type="button" onclick="query()" value="立即登录" class="submit_btn" />
+
+        </dd>
+        <dd>
+            <button class="submit_btn" ><a href="/registerface">注册</a></button>
+            <!--<input type="button" href="registerface" value="注册" class="submit_btn"  />-->
         </dd>
 
     </dl>
@@ -146,19 +154,27 @@
                 url:"/face",
                 data:{"img":imgData1},
                 success:function(data){
-
                     /* alert(data) */
-                    var result = eval(data);
-
-                    if(result){
-                        alert("登录成功")
-                        window.location.href="main1";
+                    // var result = eval(data);
+                    if(data){
+                        alert("登录成功");
+                        window.location.href="main1?a="+data;
                     } else {
                         alert("面容识别失败,请继续验证");
                     }
                 }
             });
         }
+        
+        // function register() {
+        //     $.ajax({
+        //         type:"post",
+        //         url:"/registerface",
+        //         success:function (data) {
+        //             window.location.href="registerface";
+        //         }
+        //     })
+        // }
         function getBase64() {
             var imgSrc = document.getElementById("canvas").toDataURL("image/png");
             alert(imgSrc);

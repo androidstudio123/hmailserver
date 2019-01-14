@@ -26,8 +26,8 @@
     </div>
 
     <div class="nav-info">
-        <a href="#" class="username"><label th:text="${session.username.getUsername()}" ></label></a>
-        <a th:href="@{/myTransanction(login_id=${session.username.getId()})}" class="bookshelf">||&nbsp;&nbsp;&nbsp;我的商品架</a>
+        <a href="#" class="username"><label th:text="${session.username}" ></label></a>
+        <a th:href="@{/myTransanction(login_id=${session.id})}" class="bookshelf">||&nbsp;&nbsp;&nbsp;我的商品架</a>
         <a href="logout.do" class="logout">[ 退 出 ]</a>
     </div> <!-- nav-info-end -->
 </nav>
@@ -36,7 +36,7 @@
 
 <div class="person-info">
     <p>
-        <a href="#" class="name"><label th:text="${session.username.getUsername()}"></label></a>
+        <a href="#" class="name"><label th:text="${session.username}"></label></a>
     </p>
     <input type="hidden" id="sexInput" value="${user.getSex()}">
     <p>
@@ -100,10 +100,10 @@
     </div> <!-- sell-book-end -->
 
     <span class="page-btn" style="text-align: center">
-        <a th:href="@{/myTransanction(login_id=${session.username.getId()},start=0)}">[首  页]</a>
-        <a th:href="@{/myTransanction(login_id=${session.username.getId()},start=${page.pageNum -1})}">[上一页]</a>
-        <a th:href="@{/myTransanction(login_id=${session.username.getId()},start=${page.pageNum+1})}">[下一页]</a>
-        <a th:href="@{/myTransanction(login_id=${session.username.getId()},start=${page.pages})}">[末  页]</a>
+        <a th:href="@{/myTransanction(login_id=${session.id},start=0)}">[首  页]</a>
+        <a th:href="@{/myTransanction(login_id=${session.id},start=${page.pageNum -1})}">[上一页]</a>
+        <a th:href="@{/myTransanction(login_id=${session.id},start=${page.pageNum+1})}">[下一页]</a>
+        <a th:href="@{/myTransanction(login_id=${session.id},start=${page.pages})}">[末  页]</a>
     </span>
 
 

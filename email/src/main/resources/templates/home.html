@@ -167,8 +167,8 @@
         <nav class="navbar">
             <!--nav表示导航链接的标签-->
             <div class="nav-info" style="color: blue">
-                <a href="#" class="username"><label th:text="${session.username.getUsername()}" ></label></a>
-                <a th:href="@{/myTransanction(login_id=${session.username.getId()})}" class="bookshelf">||&nbsp;&nbsp;&nbsp;我的交易</a>
+                <a href="#" class="username"><label th:text="${session.username}" ></label></a>
+                <a th:href="@{/myTransanction(login_id=${session.id})}" class="bookshelf">||&nbsp;&nbsp;&nbsp;我的交易</a>
                 <a href="/logout" class="logout">[ 退 出 ]</a>
             </div> <!-- nav-info -->
 
