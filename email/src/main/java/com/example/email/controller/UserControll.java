@@ -24,8 +24,10 @@ import javax.servlet.http.HttpServletResponse;
 
 
 import com.baidu.aip.face.AipFace;
+import com.example.email.bean.login;
 import com.example.email.entity.Users;
 import com.example.email.service.FaceService;
+import com.example.email.service.Loginservice;
 import com.example.email.util.FileUtil;
 import com.example.email.util.GetTon;
 import com.example.email.util.GsonUtils;
@@ -52,8 +54,10 @@ public class UserControll {
 	private static String UPLOADED_FOLDER = "D://hMailserver//hmailserver//hmailserver//email//src//main//resources//static//picture//";
 	private static String accessToken;
 
+//	@Autowired
+//	private FaceService faceService;
 	@Autowired
-	private FaceService faceService;
+	private Loginservice loginservice;
 
 	@RequestMapping("registerface")
 	public String login() {
@@ -85,7 +89,8 @@ public class UserControll {
 	 */
 	public void face(String username, String img, HttpServletResponse response, HttpServletRequest request,
 			AipFace client) {
-		Users user = new Users();
+		//Users user = new Users();
+		login login=new login();
 		// 图片名称
 		String fileName = System.currentTimeMillis() + ".png";
 		//String basePath = request.getSession().getServletContext().getRealPath("picture/");
@@ -104,9 +109,13 @@ public class UserControll {
 			if (flag == false) {
 				out.print("Please aim at the camera!!");// 请把脸放好咯
 			} else {
-				    user.setUsername(username);
-					user.setHeadphoto("/picture/" + fileName);
-					faceService.save(user);
+//				    user.setUsername(username);
+//					user.setHeadphoto("/picture/" + fileName);
+				login.setUsername(username);
+				login.setPassword("123456");
+				login.setHeadphoto("/picture/" + fileName);
+					//faceService.save(user);
+					loginservice.save(login);
 					out.print("Record the success of the image!!"); // 注册成功
 				}
 //						user.setUsername(username);

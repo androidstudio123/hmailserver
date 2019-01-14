@@ -9,7 +9,7 @@ public class login {
     private String username;
 //    @Column(name="password")
     private String password;
-
+    private String headphoto;
     public int getId() {
         return id;
     }
@@ -32,5 +32,13 @@ public class login {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getHeadphoto() {
+        return headphoto;
+    }
+
+    public void setHeadphoto(String headphoto) {
+        this.headphoto = headphoto;
     }
 }

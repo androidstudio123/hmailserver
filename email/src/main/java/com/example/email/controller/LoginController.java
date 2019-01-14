@@ -65,7 +65,8 @@ public class LoginController {
                 m.addAttribute("commodities", list1);
                 //m.addAttribute("session", session);
                 m.addAttribute("user", log);
-                request.getSession().setAttribute("username", log);
+                request.getSession().setAttribute("username", log.getUsername());
+                request.getSession().setAttribute("id", log.getId());
                 String session = (String) request.getSession().getAttribute(String.valueOf(log));
                 return "home";
 //            }else{
