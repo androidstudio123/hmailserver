@@ -27,7 +27,7 @@
 
     <div class="nav-info">
         <a href="#" class="username"><label th:text="${session.username}" ></label></a>
-        <a th:href="@{/myTransanction(login_id=${session.username})}" class="bookshelf">||&nbsp;&nbsp;&nbsp;我的商品架</a>
+        <a th:href="@{/myTransanction(login_id=${session.id})}" class="bookshelf">||&nbsp;&nbsp;&nbsp;我的商品架</a>
         <a href="logout.do" class="logout">[ 退 出 ]</a>
     </div> <!-- nav-info-end -->
 </nav>

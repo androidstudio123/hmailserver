@@ -10,7 +10,7 @@
 <nav class="navbar">
     <div class="nav-info" style="color: blue">
         <a href="#" class="username"><label th:text="${session.username}" ></label></a>
-        <a th:href="@{/myTransanction(login_id=${session.username})}" class="bookshelf">||&nbsp;&nbsp;&nbsp;我的交易</a>
+        <a th:href="@{/myTransanction(login_id=${session.id})}" class="bookshelf">||&nbsp;&nbsp;&nbsp;我的交易</a>
         <a href="/logout" class="logout">[ 退 出 ]</a>
     </div> <!-- nav-info -->
 

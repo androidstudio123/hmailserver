@@ -6,6 +6,8 @@
     <title>我的商品架</title>
     <link rel="stylesheet" type="text/css" href="/css/reset.css">
     <link rel="stylesheet" type="text/css" href="/css/mycommodityshelf.css">
+    <script type="text/javascript" src="/js/jquery-3.2.js"></script>
+    <script type="text/javascript" src="/js/myBookshelf.js"></script>
 </head>
 <body>
 <nav class="navbar">
@@ -28,7 +30,7 @@
     <div class="nav-info">
         <a href="#" class="username"><label th:text="${session.username}" ></label></a>
         <a th:href="@{/myTransanction(login_id=${session.id})}" class="bookshelf">||&nbsp;&nbsp;&nbsp;我的商品架</a>
-        <a href="logout.do" class="logout">[ 退 出 ]</a>
+        <a href="/logout" class="logout">[ 退 出 ]</a>
     </div> <!-- nav-info-end -->
 </nav>
 
@@ -69,7 +71,7 @@
     <p class="upload-icon"></p>
     <a id="sell-upload" th:href="@{/upload}">上传商品至商品摊</a>
     <a id="ask-upload" href="goUpload.do?bookType=0">上传求购信息</a>
-    <a id="delete-book" href="#">删除二商品</a>
+    <a id="delete-book" href="#">删除二手商品</a>
 </div>
 
 <!-- 我的书摊 -->
@@ -80,19 +82,21 @@
             <th th:each="shelfs:${page.list}">
                 <li class="book-list">
                     <p class="book-pic">
-                        <img th:src="@{'/img/comm/'+${shelfs.getId()}+'.jpg'}"/>
+                        <!--<a th:href="@{/findcommodityiamgeBycommodity_id(commodity_id=${comm1.getId()})}" class="book-pic" target="_blank">-->
+                        <!--<img th:src="@{'/img/comm/'+${shelfs.getId()}+'.jpg'}"/>-->
+                        <img th:src="@{'/img/comm/'+${shelfs.getFilename()}}"/>
                     </p>
                     <h5 class="book-name"><label th:text="${shelfs.getName()}"></label></h5>
                     <form>
                         <input type="text" name="book-id" class="book-id" th:value="${shelfs.getId()}">
                     </form>
-                    <span class="delete-btn"   ></span>
+                    <span class="delete-btn"></span>
                     <a href="/books/renewal/${book.getId()}" class="edit-btn"></a>
                     <div class="book-detail">
                         <p>原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="original-price">￥<label th:text="${shelfs.getOriginalPrice()}"></label></span></p>
                         <p>售&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="book-price">￥<label th:text="${shelfs.getPrice()}"></label></span></p>
                         <p>品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;相：<span class="book-condition"><label th:text="${shelfs.getDescrip()}"></label></span></p>
-                        <p>商品描述：<span class="book-desc"><label th:text="${shelfs.getQuailty()}"></label>}</span></p>
+                        <p>商品描述：<span class="book-desc"><label th:text="${shelfs.getQuailty()}"></label></span></p>
                     </div>
                 </li>
             </th>

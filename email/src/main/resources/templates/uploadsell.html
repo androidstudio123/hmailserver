@@ -26,8 +26,8 @@
     </div>
 
     <div class="nav-info">
-        <a href="#" class="username"><label th:text="${session.username.getUsername()}" ></label></a>
-        <a th:href="@{/myTransanction(login_id=${session.username.getId()})}" class="bookshelf">||&nbsp;&nbsp;&nbsp;我的商品架</a>
+        <a href="#" class="username"><label th:text="${session.username}" ></label></a>
+        <a th:href="@{/myTransanction(login_id=${session.id})}" class="bookshelf">||&nbsp;&nbsp;&nbsp;我的商品架</a>
         <a href="/logout" class="logout">[ 退 出 ]</a>
     </div> <!-- nav-info-end -->
 </nav>
@@ -59,7 +59,7 @@
             </select>
         </p>
         <!--<input type="hidden" name="category_id" th:value="1">-->
-        <input type="hidden" name="login_id" th:value="${session.username.getId()}">
+        <input type="hidden" name="login_id" th:value="${session.id}">
         <p>
             <span class="origin-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
             商&nbsp;品&nbsp;&nbsp;原&nbsp;价：<input type="text" name="originalPrice">
