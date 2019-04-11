@@ -28,8 +28,8 @@ import java.util.Map;
 
 @Controller
 public class CommodityController {
-
-    private static String UPLOADED_FOLDER = "D://hMailserver//hmailserver//hmailserver//email//src//main//resources//static//img//comm//";
+//  E://zjc//hmailserver-master//email//src//main//resources//static//img//comm//
+    private static String UPLOADED_FOLDER = "E://zjc//hmailserver-master//email//src//main//resources//static//img//comm//";
     @Autowired
     private CommodityService commodityService;
     @Autowired
@@ -93,9 +93,10 @@ public class CommodityController {
         return "uploadsell";
     }
     @RequestMapping("savecomm")
-    public String savecomm(Model m ,commodity commodity,@RequestParam("file") MultipartFile file,RedirectAttributes redirectAttributes){
+    public String Savecomm(Model m ,commodity commodity,@RequestParam("file") MultipartFile file,RedirectAttributes redirectAttributes){
         commodity.setFilename(file.getOriginalFilename());//将文件的原名字赋值给filename字段
-        commodity.setCategory_id(categoryservice.findidByname(commodity.getType()).getId());
+//        commodity.setCategory_id(categoryservice.findidByname(commodity.getType()).getId());
+        commodity.setCategory_id(1);
            commodityService.save(commodity);
         Map<Integer, String> categories = categoryservice.listByMap();
         List<commodity> list1 = new ArrayList<>();
@@ -115,10 +116,13 @@ public class CommodityController {
         }
 
         try {
-            // Get the file and save it somewherecc
+            // Get the file and save it somewhere
+            //先将文件转换为字节序列，保证该系统可以正确读取
+            //使用平台的默认字符集将字符串编码为 byte 序列，并将结果存储到一个新的 byte 数组中。
             byte[] bytes = file.getBytes();
             Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
             Files.write(path, bytes);
+//            Files.write()
 
             redirectAttributes.addFlashAttribute("message",
                     "You successfully uploaded '" + file.getOriginalFilename() + "'");

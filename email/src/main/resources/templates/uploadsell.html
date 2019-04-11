@@ -40,10 +40,10 @@
 </div>
 
 <div class="container">
-    <form action="/savecomm" method="post" class="upload-form" enctype="multipart/form-data">
+    <form action="savecomm" method="post" class="upload-form" enctype="multipart/form-data">
         <p>
             <span class="pic-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            上传商品图片： <input type="file" accept="img/comm/*" name="file">
+            上传商品图片： <input type="file"  name="file">
         </p>
         <p>
             <span class="name-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -62,11 +62,11 @@
         <input type="hidden" name="login_id" th:value="${session.id}">
         <p>
             <span class="origin-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            商&nbsp;品&nbsp;&nbsp;原&nbsp;价：<input type="text" name="originalPrice">
+            商&nbsp;品&nbsp;&nbsp;原&nbsp;价：<input type="text" name="price">
         </p>
         <p>
             <span class="price-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            商&nbsp;品&nbsp;&nbsp;售&nbsp;价：<input type="text" name="price">
+            商&nbsp;品&nbsp;&nbsp;售&nbsp;价：<input type="text" name="originalPrice">
         </p>
 
         <p>

@@ -7,7 +7,6 @@ $(function () {
             $('#errorInfo').html("账号或密码不能为空！");
             return false;
         }
-
         var user_ = {"username": username_, "password": password_};
         var jsonData = JSON.stringify(user_);
         $.ajax({

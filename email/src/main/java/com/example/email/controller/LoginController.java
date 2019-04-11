@@ -30,24 +30,27 @@ public class LoginController {
     public String login() {
         return "loginface";
     }
+
     @RequestMapping("mima")
     public String login2() {
         return "mimalogin";
     }
+
     @RequestMapping("main1")
-    public String login1(Model m,String a,HttpServletRequest request) {
+    public String login1(Model m, String a, HttpServletRequest request) {
 //        m.addAttribute("username",a);
         Map<Integer, String> categories = Categoryservice.listByMap();
         List<commodity> list1 = new ArrayList<>();
         list1 = commodityService.findAll();
 //       List<login> log1=loginservice.findidByusername(a);
-        List<login> id=loginservice.findidByusername(a);
+        List<login> id = loginservice.findidByusername(a);
         m.addAttribute("categories", categories);
         m.addAttribute("commodities", list1);
-        request.getSession().setAttribute("id",id.get(0).getId());
+        request.getSession().setAttribute("id", id.get(0).getId());
 //       request.getSession().setAttribute("username", log1);
         return "home";
     }
+
     @RequestMapping("login")
 //@ResponseBody
     public String Login(Model m, login login, HttpServletRequest request) {
@@ -106,6 +109,7 @@ public class LoginController {
     //@ResponseBody
     public String register(Model m, login list) {
         //login log = JSON
+        //List为接口不能实例化
         List<login> list1 = new ArrayList<>();
         list1 = loginservice.findAll();
 
