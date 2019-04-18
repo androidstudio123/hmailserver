@@ -13,4 +13,5 @@ public interface CommodityService {
     List<commodity> findcommodityBylogin_id(int login_id);
     List<commodity> findlogin_idBycommodity_id(int id);
     commodity save(commodity commodity);
+    void deletecommByid(int comm_id);
 }

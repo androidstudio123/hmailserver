@@ -24,5 +24,8 @@
     <!--<update id="update" parameterType="com.briup.apps.poll.bean.Answers" >-->
         <!--update poll_answers set selections=#{selections},checks=#{checks},survey_id=#{survey_id} where id = #{id}-->
     <!--</update>-->
+    <select id="findAllByid" resultType="com.example.email.bean.login">
+        select * from login where id=#{id}
+    </select>
 </mapper>
 

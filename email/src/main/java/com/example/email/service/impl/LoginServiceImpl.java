@@ -25,4 +25,9 @@ public class LoginServiceImpl implements Loginservice {
         return loginDao.findidByusername(username);
     }
 
+    @Override
+    public login findAllByid(int id) {
+        return loginDao.findAllByid(id);
+    }
+
 }

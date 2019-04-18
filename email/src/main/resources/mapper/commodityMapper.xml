@@ -27,4 +27,8 @@
     <insert id="save" parameterType="com.example.email.bean.commodity">
         insert into commodity values(null,#{name},#{descrip},#{type},#{category_id},#{price},#{quailty},#{login_id},#{originalPrice},#{filename})
     </insert>
+
+    <insert id="deletecommByid" parameterType="com.example.email.bean.commodity">
+       delete from commodity where id=#{id}
+    </insert>
 </mapper>

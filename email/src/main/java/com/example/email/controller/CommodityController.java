@@ -134,4 +134,11 @@ public class CommodityController {
         m.addAttribute("img",file.getOriginalFilename());
         return "home";
     }
+
+    @RequestMapping("deletecomm")
+    public String deletecomm(Model m,int comm_id){
+       commodityService.deletecommByid(comm_id);
+//        m.addAttribute("categoryLists",categoryList);
+        return "uploadsell";
+    }
 }

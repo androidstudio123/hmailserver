@@ -8,4 +8,5 @@ public interface Loginservice {
     void save(login list) ;
     List<login> findAll();
     List<login> findidByusername(String username);
+    login findAllByid(int id);
 }

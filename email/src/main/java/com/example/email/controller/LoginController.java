@@ -6,6 +6,8 @@ import com.example.email.bean.login;
 import com.example.email.service.CommodityService;
 import com.example.email.service.Loginservice;
 import com.example.email.service.Categoryservice;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -139,5 +141,21 @@ public class LoginController {
     public String logout(HttpServletRequest request) {
         request.getSession().removeAttribute("username");
         return "mimalogin";
+    }
+
+
+    @RequestMapping("myMessage")
+    public String findcommodityBylogin_id(Model m,int login_id){
+//        PageHelper.startPage(start,size,"id desc");
+       // List<login> shelf= new ArrayList<>();
+//        List<login> list = new ArrayList<>();
+//        list = loginservice.findAllByid(login_id);
+        login my=loginservice.findAllByid(login_id);
+//        PageInfo<login> page=new PageInfo<>(shelf);
+//        m.addAttribute("page", page);
+//        m.addAttribute("shelf",shelf);
+//        m.addAttribute("login",login_id);
+        m.addAttribute("my",my);
+        return "mymessage";
     }
 }

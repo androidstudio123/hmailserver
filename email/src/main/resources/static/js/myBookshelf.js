@@ -54,25 +54,25 @@ $(function(){
 
 
 	// 点击删除图标，确认是否删除
-	var flag  = false;
-	$("#delete-book").on("click",function(){
-		flag = confirm("确定删除所选择的二手书吗？");
-        if (flag == true){
-            console.log(bookIdArr);
-            // 为防止使用DELETE、PUT参数传输失败，先将type设为POST，再在data中进行修改
-            $.ajax({
-                type:"POST",
-                url:"/books",
-                async:false,
-                traditional:true,
-                data:{"bookIds":bookIdArr,_method:'DELETE'},
-                success:function (msg) {
-                    flag = msg;
-                    alert("删除成功！");
-                    location.href = "myBookshelf.do";
-                }
-            });
-        }
-	});
+	// var flag  = false;
+    // $("#delete-book").on("click",function(){
+    // 	flag = confirm("确定删除所选择的二手书吗？");
+    //    if (flag == true){
+    //        console.log(bookIdArr);
+    //        // 为防止使用DELETE、PUT参数传输失败，先将type设为POST，再在data中进行修改
+    //        $.ajax({
+    //            type:"POST",
+    //            url:"deletecomm",
+    //            async:false,
+    //            traditional:true,
+    //            data:{"bookIds":bookIdArr,_method:'DELETE'},
+    //            success:function (msg) {
+    //                flag = msg;
+    //                alert("删除成功！");
+    //                location.href = "/myTransanction";
+    //            }
+    //        });
+    //    }
+    // });
 
 });
