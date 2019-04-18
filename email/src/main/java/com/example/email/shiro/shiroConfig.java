@@ -29,11 +29,11 @@ public class shiroConfig {
         ShiroFilterFactoryBean shiroFilterFactoryBean=new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(defaultWebSecurityManager);
         //设置登录界面
-        shiroFilterFactoryBean.setLoginUrl("/login");
+        shiroFilterFactoryBean.setLoginUrl("/main");
         //沒有权限返回界面
         shiroFilterFactoryBean.setUnauthorizedUrl("/error");
         //设置登录成功界面
-        shiroFilterFactoryBean.setSuccessUrl("/success");
+        shiroFilterFactoryBean.setSuccessUrl("/login");
         /**
          * 配置shiro拦截器链
          * anon  不需要认证
@@ -41,7 +41,8 @@ public class shiroConfig {
          * user  验证通过或RememberMe登录的都可以
          */
         Map<String, String> map = new HashMap<String, String>();
-        map.put("/login", "anon");
+        map.put("/mima", "anon");
+        map.put("/login","anon");
         map.put("/login2", "anon");
         map.put("/logout" , "anon");
         map.put("/", "anon");

@@ -96,7 +96,8 @@ public class CommodityController {
     public String Savecomm(Model m ,commodity commodity,@RequestParam("file") MultipartFile file,RedirectAttributes redirectAttributes){
         commodity.setFilename(file.getOriginalFilename());//将文件的原名字赋值给filename字段
 //        commodity.setCategory_id(categoryservice.findidByname(commodity.getType()).getId());
-        commodity.setCategory_id(1);
+        category a=categoryservice.findidByname(commodity.getType());
+        commodity.setCategory_id(a.getId());
            commodityService.save(commodity);
         Map<Integer, String> categories = categoryservice.listByMap();
         List<commodity> list1 = new ArrayList<>();

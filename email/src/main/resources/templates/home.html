@@ -242,26 +242,29 @@ th:href="@{'字符串'+${model中的nam值}}"。-->
 
                     <ul class="book-lists" >
                         <!--使用list进行循环，然后判断list.get(category_id)是否和category.key相等，相等则输出-->
-                        <ul th:each="comm,commstat:${commodities}"  >
+                        <div th:each="comm,commstat:${commodities}"  >
+
                         <div th:if="${comm.getCategory_id()} eq ${category.key} ">
                             <div th:if="${commstat.count} lt ${7}">
                             <li class="book-list" >
                                 <a th:href="@{/findcommodityiamgeBycommodity_id(commodity_id=${comm.getId()})}" class="book-pic" target="_blank">
                                     <img th:src="@{'/img/comm/'+${comm.getFilename()}}"/>
-                                    <!--<img src="/img/a.jpg">-->
                                 </a>
+
                                 <a href="#" class="book-info">
                                     <h5 class="book-name"> <label th:text="${comm.getName()}" ></label></h5>
                                     <span class="book-detail"><label th:text="${comm.getDescrip()}" ></label></span>
                                 </a>
+
                                 <span class="book-price">￥<label th:text="${comm.getPrice()}" ></label>
                             <a href="#" class="book-buy">立即下单</a>
                         </span>
-                            </a>
                             </li>
                             </div>
                         </div>
-                        </ul>
+
+                        </div>
+
                     </ul><!--  book-list end -->
 
                 </div><!--  book-part end -->

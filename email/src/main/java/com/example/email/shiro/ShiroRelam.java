@@ -1,14 +1,21 @@
 package com.example.email.shiro;
 
+import com.example.email.bean.login;
+import com.example.email.service.Loginservice;
+import com.example.email.service.impl.LoginServiceImpl;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Collections;
 
 public class ShiroRelam extends AuthorizingRealm{
+
+    @Autowired
+    private Loginservice loginservice;
     /**
      * 用户验证
      * @param principalCollection
@@ -38,12 +45,13 @@ public class ShiroRelam extends AuthorizingRealm{
         //获取用户输入的账号
         String name= (String) authenticationToken.getPrincipal();
         //然后通过获取的用户账号去数据库查询user对象，
-        String password="123";
-        if(password==null){
+        login username= (login) loginservice.findidByusername(name);
+        //String password="123";
+        if(username==null){
             return  null;
         }
         //查询到user对象后，将该条数据的属性封装到authenticationInfo中，便于后续验证。
-        SimpleAuthenticationInfo authenticationInfo=new SimpleAuthenticationInfo();
+        SimpleAuthenticationInfo authenticationInfo=new SimpleAuthenticationInfo(username.getUsername(),username.getPassword(),getName());
          return authenticationInfo;
     }
 }
