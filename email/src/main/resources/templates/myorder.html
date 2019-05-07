@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商品详情</title>
+    <link rel="stylesheet" type="text/css" href="/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/css/order.css">
+    <!--<script type="text/javascript" src="/js/jquery-3.2.js"></script>-->
+    <!--<script type="text/javascript" src="/js/order.js"></script>-->
+</head>
+<body>
+<nav class="navbar">
+    <div class="nav-menu">
+        <ul class="menu">
+            <li><a th:href="@{/loginin}">首页</a></li>
+            <li><a th:href="@{/goodcomm(quailty=${'good'})}">商品良品</a></li>
+            <li><a th:href="@{/goorder(login_id=${session.id})}">我的订单</a></li>
+            <li><a href="#">购物车</a></li>
+        </ul>
+    </div><!-- nav-menu -->
+
+    <div class="nav-search">
+        <form action="Searchcommodity" method="get">
+            <input type="search" class="searchIn" name="Search" placeholder="搜商品..." required autofocus>
+            <button class="search-logo"><img src="/img/search2.png"></button>
+        </form>
+    </div>
+
+    <div class="nav-info">
+        <a href="#" class="username"><label th:text="${session.username}" ></label></a>
+        <a th:href="@{/myTransanction(login_id=${session.id})}" class="bookshelf">||&nbsp;&nbsp;&nbsp;我的商品架</a>
+        <a href="logout.do" class="logout">[ 退 出 ]</a>
+    </div> <!-- nav-info-end -->
+</nav>
+
+<div class="container">
+    <!--<div id="book-pic">-->
+        <!--<div class="book-big">-->
+            <!--<img th:src="@{'/img/comm/'+${loginid.getFilename()}}"/>-->
+        <!--</div>-->
+        <!--<span class="tip"></span>-->
+    <!--</div> &lt;!&ndash; book-pic-end &ndash;&gt;-->
+    <span th:hidden="hidden" id="login_id" th:value="${session.id}"></span>
+<th th:each="order:${page.list} ">
+    <div id="book-info">
+        <span class="book-name">订单名：<label th:text="${order.getName()}"></label>
+          <span class="seller-span1" style="font-size: small">
+				删除订单:  <a class="seller-chat" th:href="@{/deleteorder(orderid=${order.getId()},loginid=${session.id})}"th:value="${order.getId()}">删除</a>
+			</span>
+        </span>
+        <span class="book-publish"></span>
+        <span class="book-price">
+				<p>总价 <a class="final-price">￥<label th:text="${order.getTotal()}"></label></a></p>
+				<!--<p>描述 <a class="condition"><label th:text="${order.getDescrip()}"></label></a></p>-->
+				<!--<p>订单状态 <a class="condition" href="#"><label th:text="${order.getState()}"></label></a></p>-->
+                <p>订单时间<a class="condition"><label th:text="${order.getOrder_date()}"></label> </a></p>
+			</span>
+        <span class="book-descr">
+           <p>描述 <a class="book-desc" style="width: 10em;overflow: hidden;text-overflow: ellipsis"><label th:text="${order.getDescrip()}"></label></a></p>
+			</span>
+    </div> <!-- book-info-end -->
+
+    <div id="seller-info">
+        <!--<div th:switch="${order.getState()}">-->
+            <!--<p th:case="'1'">未付款</p>-->
+        <span class="seller-span1" th:switch="${order.getState()}">
+				订单状态<a class="seller-chat" th:case="'1'" th:href="@{/topay(orderid=${order.getId()})}">未付款</a>
+                        <a class="seller-chat" th:case="'2'">等待发货</a>
+                         <a class="seller-chat" th:case="'3'" th:href="@{/receivinggoods(orderid=${order.getId()},login_id=${session.id})}">确认收货</a>
+                         <a class="seller-chat" th:case="'4'">订单完成</a>
+			</span>
+        <span class="seller-span1">
+				收货人<a class="seller-chat"><label th:text="${session.username}"></label></a>
+			</span>
+        <!--<span class="seller-span2">-->
+				<!--<p>电话<a class="seller-num"></a></p>-->
+				<!--<p>宿舍<a class="seller-adr"></a></p>-->
+				<!--<p>好评率<a class="seller-appraise">90.5%</a></p>-->
+			<!--</span>-->
+        <!--<span class="seller-span3">-->
+				<!--<p>[ 去看看卖家的二手书 ]</p>-->
+			<!--</span>-->
+    </div><!-- seller-info-end -->
+    <!--<div id="book-content">-->
+        <!--<span class="book-tip"></span>-->
+    <!--</div>-->
+
+</th>
+</div><!--  container -->
+<br>
+<span class="page-btn">
+        <a th:href="@{/goorder(login_id=${session.id},start=0)}">[首  页]</a>
+        <a th:href="@{/goorder(login_id=${session.id},start=${page.pageNum -1})}">[上一页]</a>
+        <a th:href="@{/goorder(login_id=${session.id},start=${page.pageNum+1})}">[下一页]</a>
+        <a th:href="@{/goorder(login_id=${session.id},start=${page.pages})}">[末  页]</a>
+    </span>
+<footer>
+    <a href="#">©2018-2019 二手交易商城</a>
+    <a href="#">意见反馈&nbsp;&nbsp;&nbsp;联系我们&nbsp;&nbsp;&nbsp;隐私权声明&nbsp;&nbsp;&nbsp;使用条款</a>
+</footer>
+</body>
+</html>
