@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商品类型管理</title>
+    <link rel="stylesheet" type="text/css"href="/css/commodity.css">
+</head>
+<body>
+<nav class="navbar">
+    <div class="nav-info" style="color: blue">
+        <a href="#" class="username"><span th:text="${session.username}" ></span></a>
+        <a href="#" class="bookshelf">||&nbsp;&nbsp;&nbsp;我的交易</a>
+        <a href="/admin" class="logout">[ 退 出 ]</a>
+    </div> <!-- nav-info -->
+
+    <form action="" method="get">
+        <div class="nav-search">
+            <a href="#"><img class="logo" src="/img/logo2.png"></a>
+            <div class="search-form">
+                <input id="search-input" name="Search" class="searchIn" placeholder="" required autofocus>
+                <a href="#" class="search-logo">| &nbsp;<img src="/img/search.png"></a>
+                <button type="submit" id="search-button" class="searchBtn">搜索</button>
+            </div>
+        </div><!--  nav-search -->
+    </form>
+
+    <ul class="menu">
+        <li><a  th:href="@{/adminusergrid}">用户管理</a></li>
+        <li><a  th:href="@{/admincommgrid}">商品管理</a></li>
+        <li><a class="active" th:href="@{/admincategorygrid}">商品类型管理</a></li>
+        <li><a th:href="@{/adminordergrid}">订单管理</a></li>
+    </ul>
+</nav>
+
+<div id="container">
+    <a th:href="@{/savecategory}" class="book-buy">新增</a>
+    <table border="1"  style="background-color: #C0C0C0;text-align: center;margin: auto" width="60%" height="70%">
+        <tr>
+            <th>序列号</th>
+            <th>商品类型名</th>
+            <th>操作</th>
+        </tr>
+        <tr  th:each="category,counts:${page.list}" >
+            <td th:text="${counts.count}"></td>
+            <td th:text="${category.getName()}"></td>
+            <td>
+                <a th:href="@{/updatecategory(categoryid=${category.getId()})}">编辑</a>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <a th:href="@{/deletecategorygrid(categoryid=${category.getId()})}">删除</a>
+            </td>
+        </tr>
+    </table>
+    <br>
+    <span class="page-btn">
+        <a th:href="@{/admincategorygrid(start=0)}">[首  页]</a>
+        <a th:href="@{/admincategorygrid(start=${page.pageNum -1})}">[上一页]</a>
+        <a th:href="@{/admincategorygrid(start=${page.pageNum+1})}">[下一页]</a>
+        <a th:href="@{/admincategorygrid(start=${page.pages})}">[末  页]</a>
+    </span>
+</div><!-- container end-->
+<footer>
+    <a href="#">©2018-2019 二手交易商城</a>
+    <a href="#">意见反馈&nbsp;&nbsp;&nbsp;联系我们&nbsp;&nbsp;&nbsp;隐私权声明&nbsp;&nbsp;&nbsp;使用条款</a>
+</footer>
+</body>
+</html>

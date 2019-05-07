@@ -8,5 +8,10 @@ public interface LoginDao {
     List<login> findAll();
      void save(login list);
     List<login>  findidByusername(String username);
-   login findAllByid(int id);
+    login findloginByid(int loginid);
+    login findAllByid(int id);
+    void updateloginByloginid(login logins);
+    void deleteloginByloginid(int loginid);
+
+    List<login> Searchlogin(String Search);
 }

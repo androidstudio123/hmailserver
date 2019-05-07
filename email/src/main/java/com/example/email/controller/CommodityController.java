@@ -28,8 +28,8 @@ import java.util.Map;
 
 @Controller
 public class CommodityController {
-//  E://zjc//hmailserver-master//email//src//main//resources//static//img//comm//
-    private static String UPLOADED_FOLDER = "E://zjc//hmailserver-master//email//src//main//resources//static//img//comm//";
+//  "E://hmailserver-master//email//src//main//resources//static//picture//"
+    private static String UPLOADED_FOLDER = "E://hmailserver-master//email//src//main//resources//static//img//comm//";
     @Autowired
     private CommodityService commodityService;
     @Autowired
@@ -52,6 +52,7 @@ public class CommodityController {
         List all=commodityService.findBycategory_Id(category_id);
        PageInfo<commodity> page=new PageInfo<>(all);
         m.addAttribute("page", page);
+
         return "commodity";
     }
 @RequestMapping("goodcomm")

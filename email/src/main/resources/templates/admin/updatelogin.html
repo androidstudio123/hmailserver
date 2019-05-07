@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改用户信息</title>
+    <link rel="stylesheet" type="text/css" href="/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/css/upload.css">
+</head>
+<body>
+<nav class="navbar">
+    <div class="nav-menu">
+        <ul class="menu">
+            <li><a class="active" th:href="@{/adminusergrid}">用户管理</a></li>
+            <li><a th:href="@{/admincommgrid}">商品管理</a></li>
+            <li><a th:href="@{/admincategorygrid}">商品类型管理</a></li>
+            <li><a th:href="@{/adminordergrid}">订单管理</a></li>
+        </ul>
+    </div><!-- nav-menu -->
+
+    <div class="nav-search">
+        <form action="Searchcommodity" method="get">
+            <input type="search" class="searchIn" name="Search" placeholder="搜商品..." required autofocus>
+            <button class="search-logo"><img src="/img/search2.png"></button>
+        </form>
+    </div>
+
+    <div class="nav-info">
+        <a href="#" class="username"><label th:text="${session.username}" ></label></a>
+        <a href="#" class="bookshelf">||&nbsp;&nbsp;&nbsp;我的交易</a>
+        <a href="/logout" class="logout">[ 退 出 ]</a>
+    </div> <!-- nav-info-end -->
+</nav>
+
+
+
+<div class="titleName">
+    <h3>编辑用户信息</h3>
+    <p>设置用户信息</p>
+</div>
+
+<div class="container">
+    <form action="updatelogingrid">
+        <!--<p>-->
+            <!--<span class="pic-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>-->
+            <!--上传商品图片： <input type="file"  name="file" required autofocus>-->
+        <!--</p>-->
+        <input type="hidden" name="id" th:value="${login.getId()}">
+        <p>
+            <span class="name-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            用户&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：<input type="text" name="username"th:value="${login.getUsername()}" required autofocus>
+        </p>
+        <p>
+            <span class="origin-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            用&nbsp;户&nbsp;&nbsp;密&nbsp;码：<input type="text" name="password" th:value="${login.getPassword()}">
+        </p>
+        <button type="submit" class="btn btn-success col-lg-12" >提交</button>
+    </form>
+</div>
+
+<dialog id="modal-dialog">
+    <div id="modal-text"></div>
+    <img class="modal-close-icon" src="<%=request.getContextPath()%>/img/close.png">
+    <div  class="modal-close">
+        <img src="<%=request.getContextPath()%>/img/success.png">
+    </div>
+</dialog>
+
+<footer>
+    <a href="#">©2018-2019 二手交易商城</a>
+    <a href="#">意见反馈&nbsp;&nbsp;&nbsp;联系我们&nbsp;&nbsp;&nbsp;隐私权声明&nbsp;&nbsp;&nbsp;使用条款</a>
+</footer>
+</body>
+</html>

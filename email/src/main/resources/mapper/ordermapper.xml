@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.email.dao.OrderDao">
+
+    <!-- 查询所有的课程信息 -->
+    <select id="findorderByLoginid" resultType="com.example.email.bean.order">
+        select * from orders WHERE login_id=#{login_id}
+    </select>
+    <select id="findAllorder" resultType="com.example.email.bean.order">
+        select * from orders
+    </select>
+    <select id="findorderByorderid" resultType="com.example.email.bean.order">
+        select * from orders WHERE id=#{id}
+    </select>
+    <update id="commpletepay" parameterType="com.example.email.bean.order" >
+       update orders set state='2'where id = #{id}
+    </update>
+    <update id="delivergoods" parameterType="com.example.email.bean.order" >
+        update orders set state='3'where id = #{id}
+    </update>
+    <update id="receivinggoods" parameterType="com.example.email.bean.order" >
+        update orders set state='4'where id = #{id}
+    </update>
+    <insert id="saveorder" parameterType="com.example.email.bean.order">
+        insert into orders values(null,#{name},#{addres},#{phone},#{order_date},#{state},#{total},#{login_id},#{img},#{descrip},#{shname})
+    </insert>
+    <delete id="deleteorderByorderid" parameterType="com.example.email.bean.order">
+        DELETE FROM orders WHERE id=#{id}
+    </delete>
+
+    <select id="Searchorder" resultType="com.example.email.bean.order">
+        select * from orders where shname LIKE #{Search} OR name LIKE #{Search}
+    </select>
+</mapper>

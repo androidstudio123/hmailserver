@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商品管理</title>
+    <link rel="stylesheet" type="text/css"href="/css/commodity.css">
+</head>
+<body>
+<nav class="navbar">
+    <div class="nav-info" style="color: blue">
+        <a href="#" class="username"><label th:text="${session.username}" ></label></a>
+        <a href="#" class="bookshelf">||&nbsp;&nbsp;&nbsp;我的交易</a>
+        <a href="/admin" class="logout">[ 退 出 ]</a>
+    </div> <!-- nav-info -->
+
+    <form action="Searchcommgrid" method="get">
+        <div class="nav-search">
+            <a href="#"><img class="logo" src="/img/logo2.png"></a>
+            <div class="search-form">
+                <input id="search-input" name="Search" class="searchIn" placeholder="输入商品名查询商品信息" >
+                <a href="#" class="search-logo">| &nbsp;<img src="/img/search.png"></a>
+                <button type="submit" id="search-button" class="searchBtn">搜索</button>
+            </div>
+        </div><!--  nav-search -->
+    </form>
+
+    <ul class="menu">
+        <li><a  th:href="@{/adminusergrid}">用户管理</a></li>
+        <li><a class="active" th:href="@{/admincommgrid}">商品管理</a></li>
+        <li><a th:href="@{/admincategorygrid}">商品类型管理</a></li>
+        <li><a th:href="@{/adminordergrid}">订单管理</a></li>
+    </ul>
+</nav>
+
+<div id="container">
+    <a th:href="@{/tosavecommgrid}" class="book-buy">新增</a>
+    <table border="1"  style="background-color: #C0C0C0;text-align: center;margin: auto" width="60%" height="70%">
+        <tr>
+            <th>序列号</th>
+            <th>商品名</th>
+            <th>商品描述</th>
+            <th>商品类型</th>
+            <th>商品售价</th>
+            <th>商品质量</th>
+            <th>商品图片</th>
+            <th>操作</th>
+        </tr>
+        <tr  th:each="comm,counts:${page.list}" >
+            <td th:text="${counts.count}"></td>
+            <td th:text="${comm.getName()}"></td>
+            <td th:text="${comm.getDescrip()}"></td>
+            <td th:text="${comm.getType()}"></td>
+            <td th:text="${comm.getPrice()}"></td>
+            <td th:text="${comm.getQuailty()}"></td>
+            <td> <img width="100" height="50"  th:src="@{'/img/comm/'+${comm.getFilename()}}"/></td>
+            <td>
+                <a th:href="@{/updatecomm(commid=${comm.getId()})}">编辑</a>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <a th:href="@{/deletecommgrid(commid=${comm.getId()})}">删除</a>
+            </td>
+        </tr>
+    </table>
+    <div th:if="${page.getList().size()} eq ${0}" style="text-align: center">
+        <label style="color: red ;text-align: center" >输入格式不对或者搜索内容不存在，请重试！</label>
+    </div>
+    <br>
+    <span class="page-btn">
+        <a th:href="@{/admincommgrid(start=0)}">[首  页]</a>
+        <a th:href="@{/admincommgrid(start=${page.pageNum -1})}">[上一页]</a>
+        <a th:href="@{/admincommgrid(start=${page.pageNum+1})}">[下一页]</a>
+        <a th:href="@{/admincommgrid(start=${page.pages})}">[末  页]</a>
+    </span>
+</div><!-- container end-->
+<footer>
+    <a href="#">©2018-2019 二手交易商城</a>
+    <a href="#">意见反馈&nbsp;&nbsp;&nbsp;联系我们&nbsp;&nbsp;&nbsp;隐私权声明&nbsp;&nbsp;&nbsp;使用条款</a>
+</footer>
+</body>
+</html>

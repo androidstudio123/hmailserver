@@ -73,4 +73,24 @@ public class CommodityServiceImpl  implements CommodityService {
         commodityDao.deletecommByid(comm_id);
     }
 
+    @Override
+    public commodity findcommByid(int commid) {
+        return commodityDao.findcommByid(commid);
+    }
+
+    @Override
+    public void updatecommBycommid(commodity comms) {
+    commodityDao.updatecommBycommid(comms);
+    }
+
+    @Override
+    public void deletecommBycommid(int commid) {
+     commodityDao.deletecommByid(commid);
+    }
+
+    @Override
+    public List<commodity> Searchcommgrid(String Search) {
+        return commodityDao.Searchcommgrid(Search);
+    }
+
 }

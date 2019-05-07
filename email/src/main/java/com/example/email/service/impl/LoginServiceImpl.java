@@ -26,8 +26,29 @@ public class LoginServiceImpl implements Loginservice {
     }
 
     @Override
+    public login findloginByid(int loginid) {
+        return loginDao.findloginByid(loginid);
+    }
+
+    @Override
     public login findAllByid(int id) {
         return loginDao.findAllByid(id);
+    }
+
+    @Override
+    public void updateloginByloginid(login logins) {
+        loginDao.updateloginByloginid(logins);
+    }
+
+
+    @Override
+    public void deleteloginByloginid(int loginid) {
+             loginDao.deleteloginByloginid(loginid);
+    }
+
+    @Override
+    public List<login> Searchlogin(String Search) {
+        return loginDao.Searchlogin(Search);
     }
 
 }

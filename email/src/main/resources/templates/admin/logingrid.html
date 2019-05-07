@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户管理</title>
+    <link rel="stylesheet" type="text/css"href="/css/commodity.css">
+</head>
+<body>
+<nav class="navbar">
+    <div class="nav-info" style="color: blue">
+        <a href="#" class="username"><label th:text="${session.username}" ></label></a>
+        <a href="#" class="bookshelf">||&nbsp;&nbsp;&nbsp;我的交易</a>
+        <a href="/admin" class="logout">[ 退 出 ]</a>
+    </div> <!-- nav-info -->
+
+    <form action="Searchlogingrid" method="get">
+        <div class="nav-search">
+            <a href="#"><img class="logo" src="/img/logo2.png"></a>
+            <div class="search-form">
+                <input id="search-input" name="Search" class="searchIn" placeholder="输入用户名查询用户信息" >
+                <a href="#" class="search-logo">| &nbsp;<img src="/img/search.png"></a>
+                <button type="submit" id="search-button" class="searchBtn">搜索</button>
+            </div>
+        </div><!--  nav-search -->
+    </form>
+
+    <ul class="menu">
+        <li><a class="active" th:href="@{/adminusergrid}">用户管理</a></li>
+        <li><a th:href="@{/admincommgrid}">商品管理</a></li>
+        <li><a th:href="@{/admincategorygrid}">商品类型管理</a></li>
+        <li><a th:href="@{/adminordergrid}">订单管理</a></li>
+    </ul>
+</nav>
+
+<div id="container">
+    <!--<div id="book-menu">-->
+    <!--<ul class="book-class">-->
+    <!--<th >-->
+    <!--<li><a href="goBookStore.do?id=${category.key}"><label th:text="${categoryvalue.getName()}" ></label></a></li>-->
+    <!--</th>-->
+    <!--</ul>-->
+    <!--</div>-->
+    <!--<div id="book-menu-toggle">-->
+    <!--查 看 菜 单-->
+    <!--<div id="toggle-btn"></div>-->
+    <!--</div>-->
+    <a th:href="@{/savelogin}" class="book-buy">新增</a>
+    <table border="1"  style="background-color: #C0C0C0;text-align: center;margin: auto" width="60%" height="70%">
+        <tr>
+            <th>序列号</th>
+            <th>用户名</th>
+            <th>密码</th>
+            <th>人脸图片</th>
+            <th>性别</th>
+            <th>操作</th>
+        </tr>
+        <tr  th:each="user,counts:${page.list}" >
+            <td th:text="${counts.count}"></td>
+            <td th:text="${user.getUsername()}"></td>
+            <td th:text="${user.getPassword()}"></td>
+            <!--<td th:text="${user.getHeadphoto()}"></td>-->
+            <td> <img width="100" height="50"  th:src="@{${user.getHeadphoto()}}"/></td>
+            <td th:switch="${user.getSex()}">
+                <a th:case="'m'">男</a>
+                <a th:case="'w'">女</a>
+            </td>
+            <td>
+                <a th:href="@{/updatelogin(loginid=${user.getId()})}">编辑</a>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <a th:href="@{/deletelogingrid(loginid=${user.getId()})}">删除</a>
+            </td>
+        </tr>
+    </table>
+    <div th:if="${page.getList().size()} eq ${0}" style="text-align: center">
+        <label style="color: red ;text-align: center" >输入格式不对或者搜索内容不存在，请重试！</label>
+    </div>
+    <br>
+    <span class="page-btn">
+        <a th:href="@{/adminusergrid(start=0)}">[首  页]</a>
+        <a th:href="@{/adminusergrid(start=${page.pageNum -1})}">[上一页]</a>
+        <a th:href="@{/adminusergrid(start=${page.pageNum+1})}">[下一页]</a>
+        <a th:href="@{/adminusergrid(start=${page.pages})}">[末  页]</a>
+    </span>
+</div><!-- container end-->
+<footer>
+    <a href="#">©2018-2019 二手交易商城</a>
+    <a href="#">意见反馈&nbsp;&nbsp;&nbsp;联系我们&nbsp;&nbsp;&nbsp;隐私权声明&nbsp;&nbsp;&nbsp;使用条款</a>
+</footer>
+</body>
+</html>

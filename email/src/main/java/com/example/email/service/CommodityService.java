@@ -14,4 +14,10 @@ public interface CommodityService {
     List<commodity> findlogin_idBycommodity_id(int id);
     commodity save(commodity commodity);
     void deletecommByid(int comm_id);
+
+    //void save(commodity list);
+    commodity findcommByid(int commid);
+    void updatecommBycommid(commodity comms);
+    void deletecommBycommid(int commid);
+    List<commodity> Searchcommgrid(String Search);
 }

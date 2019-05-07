@@ -15,4 +15,11 @@ public interface CommodityDao {
     List<commodity> findlogin_idBycommodity_id(int id);
     void save(commodity commodity);
     void deletecommByid(int comm_id);
+
+
+
+    commodity findcommByid(int commid);
+    void updatecommBycommid(commodity comms);
+   // void deletecommBycommid(int commid);
+    List<commodity> Searchcommgrid(String Search);
 }

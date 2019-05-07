@@ -51,7 +51,7 @@ import net.sf.json.JSONObject;
  */
 @Controller
 public class UserControll {
-	private static String UPLOADED_FOLDER = "D://hMailserver//hmailserver//hmailserver//email//src//main//resources//static//picture//";
+	private static String UPLOADED_FOLDER = "E://hmailserver-master//email//src//main//resources//static//picture//";
 	private static String accessToken;
 
 //	@Autowired

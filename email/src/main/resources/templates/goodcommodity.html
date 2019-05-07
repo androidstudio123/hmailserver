@@ -27,9 +27,9 @@
 
     <ul class="menu">
         <li><a th:href="@{/loginin}">首页</a></li>
-        <li><a class="active">商品良品</a></li>
-        <li><a href="/goAskcomm">求购区</a></li>
-        <li><a href="#">服务区</a></li>
+        <li><a class="active" th:href="@{/goodcomm(quailty=${'good'})}">商品良品</a></li>
+        <li><a th:href="@{/goorder(login_id=${session.id})}">我的订单</a></li>
+        <li><a href="#">购物车</a></li>
     </ul>
 </nav>
 

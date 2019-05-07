@@ -14,4 +14,26 @@
     <select id="findidByname" resultType="com.example.email.bean.category">
         select * from category where name=#{name}
     </select>
+
+
+
+
+<select id="findcategoryByid" resultType="com.example.email.bean.category">
+select * from category where id=#{id}
+</select>
+        <!-- 根据id删除用户信息 -->
+<delete id="deletecategoryBycategoryid" parameterType="com.example.email.bean.category">
+delete from category where id = #{id}
+</delete>
+
+        <!-- 保存用户信息 -->
+<insert id="save" parameterType="com.example.email.bean.login">
+insert into category values (null,#{name})
+</insert>
+
+<update id="updatecategoryBycategoryid" parameterType="com.example.email.bean.login" >
+update category set name=#{name} where id = #{id}
+</update>
+
+
 </mapper>

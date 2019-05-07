@@ -18,6 +18,9 @@
     <select id="Searchcommodity" resultType="com.example.email.bean.commodity">
         select * from commodity where descrip LIKE #{Search}
     </select>
+    <select id="Searchcommgrid" resultType="com.example.email.bean.commodity">
+        select * from commodity where name LIKE #{Search}
+    </select>
     <select id="findcommodityBylogin_id" resultType="com.example.email.bean.commodity">
         select * from commodity where login_id=#{login_id}
     </select>
@@ -31,4 +34,16 @@
     <insert id="deletecommByid" parameterType="com.example.email.bean.commodity">
        delete from commodity where id=#{id}
     </insert>
+
+
+
+
+
+    <select id="findcommByid" resultType="com.example.email.bean.commodity">
+        select * from commodity where id=#{id}
+    </select>
+    <update id="updatecommBycommid" parameterType="com.example.email.bean.commodity" >
+        update commodity set name=#{name},descrip=#{descrip},type=#{type},price=#{price},quailty=#{quailty},filename=#{filename} where id = #{id}
+    </update>
+
 </mapper>
