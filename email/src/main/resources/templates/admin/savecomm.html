@@ -69,7 +69,7 @@
         </p>
         <p>
             <span class="price-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            商&nbsp;品&nbsp;&nbsp;售&nbsp;价：<input type="text" name="originalPrice">
+            商&nbsp;品&nbsp;&nbsp;售&nbsp;价：<input type="hidden" name="originalPrice" th:value="${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd hh:mm:ss')}">
         </p>
 
         <p>

@@ -74,6 +74,7 @@ public class CommodityController {
           commodity iimage1=commodity.get(0);
         //m.addAttribute("image",image1);
        m.addAttribute("loginid",iimage1);
+       m.addAttribute("comm",commodity_id);
         return "commodityimage";
     }
 

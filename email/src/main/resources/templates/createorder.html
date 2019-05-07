@@ -42,21 +42,36 @@
         <span class="tip"></span>
     </div> <!-- book-pic-end -->
 
+    <!--<div id="book-info">-->
+        <!--<span class="book-name"><label th:text="${loginid.getName()}"></label></span>-->
+        <!--<span class="book-publish"></span>-->
+        <!--<span class="book-price">-->
+				<!--<p>售价 <a class="final-price">￥<label th:text="${loginid.getPrice()}"></label></a></p>-->
+				<!--&lt;!&ndash;<p>输入购买数量 <a class="original-price"><input name="count"> </a></p>&ndash;&gt;-->
+				<!--&lt;!&ndash;<p>商品描述 <a class="condition"><label th:text="${loginid.getDescrip()}"></label></a></p>&ndash;&gt;-->
+			<!--</span>-->
+        <!--&lt;!&ndash;<span class="book-descr">&ndash;&gt;-->
+				<!--&lt;!&ndash;<p>商品描述<a class="book-desc"><label th:text="${loginid.getDescrip()}"></label></a></p>&ndash;&gt;-->
+				<!--&lt;!&ndash;<p>总价<a class="upload-time"><label th:text="${loginid.getDescrip()}"></label></a></p>&ndash;&gt;-->
+			<!--&lt;!&ndash;</span>&ndash;&gt;-->
+        <!--<button  type="submit" class="buy-now">提交订单</button>-->
+    <!--</div> &lt;!&ndash; book-info-end &ndash;&gt;-->
+
     <div id="book-info">
         <span class="book-name"><label th:text="${loginid.getName()}"></label></span>
         <span class="book-publish"></span>
         <span class="book-price">
 				<p>售价 <a class="final-price">￥<label th:text="${loginid.getPrice()}"></label></a></p>
-				<!--<p>输入购买数量 <a class="original-price"><input name="count"> </a></p>-->
-				<p>商品描述 <a class="condition"><label th:text="${loginid.getDescrip()}"></label></a></p>
-
+            <!--<p>定价 <a class="original-price">￥<label th:text="${loginid.getOriginalPrice()}"></label> </a></p>-->
+				<p>品相 <a class="condition"><label th:text="${loginid.getQuailty()}"></label></a></p>
 			</span>
-        <!--<span class="book-descr">-->
-				<!--<p>商品描述<a class="book-desc"><label th:text="${loginid.getDescrip()}"></label></a></p>-->
-				<!--<p>总价<a class="upload-time"><label th:text="${loginid.getDescrip()}"></label></a></p>-->
-			<!--</span>-->
-        <button  type="submit" class="buy-now">提交订单</button>
+        <span class="book-descr">
+				<p>商品描述<a class="book-desc"><label th:text="${loginid.getDescrip()}"></label></a></p>
+				<p>上架时间<a class="upload-time"><label th:text="${loginid.getOriginalPrice()}"></label></a></p>
+			</span>
+        <button type="submit" class="buy-now">提交订单</button>
     </div> <!-- book-info-end -->
+
 
     <div id="seller-info">
         <!--<a class="seller-name"></a>-->

@@ -256,7 +256,9 @@ th:href="@{'字符串'+${model中的nam值}}"。-->
 
                                 <a href="#" class="book-info">
                                     <h5 class="book-name"> <label th:text="${comm.getName()}" ></label></h5>
-                                    <span class="book-detail"><label th:text="${comm.getDescrip()}" ></label></span>
+                                    <span class="book-detail" style="overflow: hidden;text-overflow: ellipsis">
+                                        <label th:text="${comm.getDescrip()}" ></label>
+                                    </span>
                                 </a>
 
                                 <span class="book-price">￥<label th:text="${comm.getPrice()}" ></label>
